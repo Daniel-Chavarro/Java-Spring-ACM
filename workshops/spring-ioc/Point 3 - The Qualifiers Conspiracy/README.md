@@ -187,3 +187,10 @@ Order placed. Amount: 1000000.0 (No discount applied)
 
 🧠 Cuando se usa `@Autowired(required = false)` sobre un constructor, si el bean no existe, se requiere un **constructor alternativo** que no utilice esa dependencia.  
 Esto también aplica para la inyección mediante *setters*.
+
+
+### 🧩 Conclusión
+
+El uso de `@Primary` simplifica la configuración cuando se desea una implementación por defecto, mientras que `@Qualifier` brinda control preciso al seleccionar entre varias implementaciones.
+
+Comprender esta diferencia es fundamental para evitar errores de inyección en aplicaciones con múltiples estrategias o servicios similares.
