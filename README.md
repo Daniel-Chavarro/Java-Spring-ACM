@@ -11,6 +11,6 @@ Grupo #7
 Estructura propuesta (navegación rápida):
 - workshops/
   - spring-ioc/
-    - lab-1/  (Laboratorio: El Laboratorio de los Beans)
+    - Point 1 - The laboratory of beans/ (Laboratorio:La conspiración de los Qualifiers)
     - Point 3 - The Qualifiers Conspiracy/  (Laboratorio: La Conspiración de los Qualifiers)
     - Point 4 -- The Infinite Loop/  (Laboratorio: El Bucle Infinito)
