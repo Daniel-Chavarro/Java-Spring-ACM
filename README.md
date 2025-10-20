@@ -9,7 +9,6 @@ Integrantes:
 Grupo #7
 
 
-
 Estructura propuesta (navegación rápida):
 - workshops/
   - spring-ioc/
