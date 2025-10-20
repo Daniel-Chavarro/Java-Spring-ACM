@@ -1,4 +1,4 @@
-# 🧩 Creación, Selección y Posposición de Beans en Spring
+# 🧩 Punto 1 - Creación, Selección y Posposición de Beans en Spring
 
 ## 📘 Descripción del problema
 Este proyecto demuestra el uso de **@Component**, **@Bean**, **@Qualifier** y **@Lazy** en el contexto del contenedor IoC de Spring.  
