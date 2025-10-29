@@ -21,9 +21,7 @@ public class AbilityService {
     private final WebClient webClient;
 
     /**
-     * Constructor for AbilityService.
-     *
-     * @param webClient The WebClient instance to be used for API calls.
+     * Create an AbilityService backed by the provided WebClient.
      */
     @Autowired
     public AbilityService(WebClient webClient) {
@@ -32,10 +30,9 @@ public class AbilityService {
 
 
     /**
-     * Fetches an Ability by its ID from the PokeAPI.
+     * Retrieves an ability by its numeric ID from the PokeAPI.
      *
-     * @param id The ID of the Ability to fetch.
-     * @return A Mono emitting the Ability object.
+     * @return the Ability corresponding to the provided ID
      */
     public Mono<Ability> getAbilityById(int id) {
         return webClient.get()
@@ -54,10 +51,11 @@ public class AbilityService {
     }
 
     /**
-     * Fetches an Ability by its name from the PokeAPI.
+     * Retrieves the Ability with the specified name from the PokeAPI.
      *
-     * @param name The name of the Ability to fetch.
-     * @return A Mono emitting the Ability object.
+     * If the API responds with HTTP 404, the reactive stream will error with AbilityNotFoundException.
+     *
+     * @return the Ability for the specified name
      */
     public Mono<Ability> getAbilityByName(String name) {
         return webClient.get()

@@ -16,11 +16,20 @@ public class PokemonController {
 
     private final PokemonService pokemonService;
 
+    /**
+     * Constructs a PokemonController and sets the PokemonService used to fetch Pokémon data.
+     */
     @Autowired
     public PokemonController(PokemonService pokemonService) {
         this.pokemonService = pokemonService;
     }
 
+    /**
+     * Retrieve a Pokémon by its name.
+     *
+     * @param name the name of the Pokémon to retrieve (provided as the "name" query parameter)
+     * @return the Pokemon matching the provided name
+     */
     @GetMapping
     public Mono<Pokemon> getPokemonByName(@RequestParam String name) {
         return pokemonService.getPokemonByName(name);

@@ -30,9 +30,10 @@ public class PokemonService {
     private final AbilityService abilityService;
 
     /**
-     * Constructor for PokemonService.
+     * Create a PokemonService configured with the HTTP client and ability resolver.
      *
-     * @param webClient The WebClient instance to be used for API calls.
+     * @param webClient the WebClient used to call the external PokeAPI
+     * @param abilityService the service used to fetch Ability details by name
      */
     @Autowired
     public PokemonService(WebClient webClient, AbilityService abilityService) {
@@ -41,10 +42,9 @@ public class PokemonService {
     }
 
     /**
-     * Fetches a Pokemon by its name from the PokeAPI.
+     * Retrieves a Pokemon by name from the PokeAPI and resolves its abilities.
      *
-     * @param name The name of the Pokemon to fetch.
-     * @return A Mono emitting the Pokemon object.
+     * @return the Pokemon with its id, name, weight, and a list of resolved Ability objects
      */
     public Mono<Pokemon> getPokemonByName(String name) {
         return webClient.get()
