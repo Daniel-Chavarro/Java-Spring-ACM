@@ -225,8 +225,31 @@ public class PokemonNotFoundException extends RuntimeException {
 | Código | Descripción |
 |--------|-------------|
 | 200 | Recurso encontrado exitosamente |
+| 400 | Nombre de Pokémon inválido (vacío, null o solo espacios) |
 | 404 | Pokémon o habilidad no encontrado |
 | 500 | Error interno del servidor |
+
+### Validación de entrada
+
+El servicio implementa validación de preflight que:
+- Rechaza nombres `null`, vacíos o con solo espacios en blanco (retorna 400)
+- Normaliza nombres válidos con `trim()` y `toLowerCase()` antes de consultar la API
+- Previene llamadas a `/pokemon/` con identificadores vacíos
+
+**Ejemplo de error 400:**
+```bash
+curl "http://localhost:8080/pokeapi/pokemon?name=%20%20%20"
+```
+
+**Respuesta (400 Bad Request):**
+```json
+{
+  "timestamp": "2025-10-29T10:30:00",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Pokemon name cannot be null, empty, or whitespace-only"
+}
+```
 
 
 ## 🔧 Configuración

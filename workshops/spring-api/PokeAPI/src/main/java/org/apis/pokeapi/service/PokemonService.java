@@ -2,15 +2,15 @@ package org.apis.pokeapi.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apis.pokeapi.exception.PokemonNotFoundException;
-import org.apis.pokeapi.model.Ability;
 import org.apis.pokeapi.model.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -47,12 +47,23 @@ public class PokemonService {
      * @return A Mono emitting the Pokemon object.
      */
     public Mono<Pokemon> getPokemonByName(String name) {
+        // Preflight validation: trim and check for blank/whitespace-only
+        if (name == null || name.trim().isEmpty()) {
+            return Mono.error(new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Pokemon name cannot be null, empty, or whitespace-only"
+            ));
+        }
+
+        // Normalize the name: trim and convert to lowercase
+        String normalizedName = name.trim().toLowerCase();
+
         return webClient.get()
-                .uri("/pokemon/{name}", name)
+                .uri("/pokemon/{name}", normalizedName)
                 .retrieve()
                 .onStatus(
                         status -> status.value() == 404,
-                        clientResponse -> Mono.error(new PokemonNotFoundException("Pokemon not found: " + name))
+                        _ -> Mono.error(new PokemonNotFoundException("Pokemon not found: " + normalizedName))
                 )
                 .bodyToMono(JsonNode.class)
                 .flatMap(json -> {
