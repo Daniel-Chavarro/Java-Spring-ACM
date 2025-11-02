@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PokeApiApplication {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication.run(PokeApiApplication.class, args);
     }
 
