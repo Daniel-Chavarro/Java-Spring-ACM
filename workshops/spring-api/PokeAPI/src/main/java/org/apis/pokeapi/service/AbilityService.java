@@ -60,12 +60,21 @@ public class AbilityService {
      * @return A Mono emitting the Ability object.
      */
     public Mono<Ability> getAbilityByName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return Mono.error(new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Ability name cannot be null, empty, or whitespace-only"
+            ));
+        }
+
+        String normalizedName = name.trim().toLowerCase();
+
         return webClient.get()
-                .uri("/ability/{name}", name)
+                .uri("/ability/{name}", normalizedName)
                 .retrieve()
                 .onStatus(
                         status -> status.value() == 404,
-                        clientResponse -> Mono.error(new AbilityNotFoundException("Ability not found with name: " + name))
+                        clientResponse -> Mono.error(new AbilityNotFoundException("Ability not found with name: " + normalizedName))
                 )
                 .bodyToMono(JsonNode.class)
                 .map(json -> new Ability(
