@@ -17,3 +17,7 @@ Estructura propuesta (navegación rápida):
     - Point 1 -The laboratory of beans/ACM-Taller1/  (Laboratorio: El Laboratorio de los Beans)
     - Point 3 - The Qualifiers Conspiracy/  (Laboratorio: La Conspiración de los Qualifiers)
     - Point 4 -- The Infinite Loop/  (Laboratorio: El Bucle Infinito)
+  - spring-api/
+    - README.md (documento con informacion de las actividades)
+    - PokeAPI/ (Laboratorio: API de Pokémon)
+    - WeatherForecast/ (Laboratorio: API de pronóstico de 5 días)
