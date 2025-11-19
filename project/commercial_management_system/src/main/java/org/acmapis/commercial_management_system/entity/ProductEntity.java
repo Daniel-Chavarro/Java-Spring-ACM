@@ -18,22 +18,23 @@ import java.util.UUID;
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "product_id")
     private UUID id;
 
-    @Column(nullable = false, length = 128)
+    @Column(name = "product_name", nullable = false, length = 128)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 }

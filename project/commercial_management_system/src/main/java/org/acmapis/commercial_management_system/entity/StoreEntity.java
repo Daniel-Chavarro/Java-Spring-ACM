@@ -15,9 +15,10 @@ import lombok.Setter;
 public class StoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "store_id")
     private Long storeId;
 
-    @Column(nullable = false, length = 64)
+    @Column(name = "store_name", nullable = false, length = 64)
     private String storeName;
 
     @ManyToOne

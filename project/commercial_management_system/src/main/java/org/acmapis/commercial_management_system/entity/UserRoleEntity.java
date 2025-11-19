@@ -17,9 +17,10 @@ import org.acmapis.commercial_management_system.model.enums.UserRole;
 public class UserRoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_role_id")
     private Long userRoleId;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "role", nullable = false)
     private UserRole role;
 }

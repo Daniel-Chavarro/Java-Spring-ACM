@@ -17,12 +17,13 @@ import java.math.BigDecimal;
 public class StoreProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "store_product_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "stock", nullable = false)
     private Long stock;
 
-    @Column(nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

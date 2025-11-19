@@ -16,13 +16,14 @@ import java.time.LocalDateTime;
 public class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "sale_id")
     private Long saleId;
 
-    @Column(nullable = false)
+    @Column(name = "sale_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime saleDate;
 
-    @Column(nullable = false)
+    @Column(name = "total_amount", nullable = false)
     private Long totalAmount;
 
     @ManyToOne

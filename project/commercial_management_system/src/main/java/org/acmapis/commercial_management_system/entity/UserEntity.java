@@ -16,28 +16,29 @@ import java.time.LocalDateTime;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(nullable = false, length = 32)
+    @Column(name = "first_name", nullable = false, length = 32)
     private String firstName;
 
-    @Column(nullable = false, length = 32)
+    @Column(name = "last_name", nullable = false, length = 32)
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false, length = 10)
+    @Column(name = "phone", nullable = false, length = 10)
     private String phone;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
