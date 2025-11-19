@@ -7,6 +7,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository interface for managing CityEntity data access operations.
+ * Provides standard CRUD operations for city-related database interactions.
+ *
+ * @author Commercial Management System
+ * @version 1.0
+ * @since 2025-11-19
+ */
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
 

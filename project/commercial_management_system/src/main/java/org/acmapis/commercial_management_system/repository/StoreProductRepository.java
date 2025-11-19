@@ -9,6 +9,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository interface for managing StoreProductEntity data access operations.
+ * Provides CRUD operations for managing inventory relationships between stores and products.
+ *
+ * @author Commercial Management System
+ * @version 1.0
+ * @since 2025-11-19
+ */
 @Repository
 public interface StoreProductRepository extends JpaRepository<StoreProductEntity, Long> {
 
