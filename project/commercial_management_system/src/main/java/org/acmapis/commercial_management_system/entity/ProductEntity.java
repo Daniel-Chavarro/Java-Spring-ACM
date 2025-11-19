@@ -19,13 +19,13 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "product_id")
-    private UUID id;
+    private UUID productId;
 
     @Column(name = "product_name", nullable = false, length = 128)
-    private String name;
+    private String productName;
 
     @Column(name = "description", nullable = false)
-    private String description;
+    private String productDescription;
 
     @Column(name = "price", nullable = false)
     private Double price;
