@@ -9,5 +9,4 @@ public class CommercialManagementSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(CommercialManagementSystemApplication.class, args);
     }
-
 }
