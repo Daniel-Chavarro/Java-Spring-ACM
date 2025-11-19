@@ -21,7 +21,7 @@ public class CityEntity {
     @Column(name = "city_name",nullable = false, length = 64)
     private String cityName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id_fk", nullable = false)
     private DepartmentEntity department;
 }

@@ -21,11 +21,11 @@ public class SaleProductEntity {
     @Column(name = "quantity", nullable = false)
     private Long quantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "sale_id_fk", nullable = false)
     private SaleEntity sale;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id_fk", nullable = false)
     private ProductEntity product;
 

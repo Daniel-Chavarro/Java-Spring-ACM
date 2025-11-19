@@ -45,7 +45,7 @@ public class UserEntity {
     @JoinColumn(name = "role_id_fk", nullable = false)
     private UserRoleEntity role;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "city_id_fk", nullable = false)
     private CityEntity city;
 }

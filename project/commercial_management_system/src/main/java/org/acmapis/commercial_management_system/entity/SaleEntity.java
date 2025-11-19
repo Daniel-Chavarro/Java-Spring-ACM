@@ -26,7 +26,7 @@ public class SaleEntity {
     @Column(name = "total_amount", nullable = false)
     private Long totalAmount;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id_fk", nullable = false)
     private UserEntity user;
 }
