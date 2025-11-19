@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "sale")
@@ -17,7 +18,7 @@ public class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "sale_id")
-    private Long saleId;
+    private UUID saleId;
 
     @Column(name = "sale_date", nullable = false)
     @CreationTimestamp
