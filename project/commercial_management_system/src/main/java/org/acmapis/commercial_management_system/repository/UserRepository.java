@@ -15,7 +15,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2025-11-19
  */
-interface UserRepository extends JpaRepository<UserEntity, UUID> {
+public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     /**
      * Finds users by their last name (case-insensitive).
