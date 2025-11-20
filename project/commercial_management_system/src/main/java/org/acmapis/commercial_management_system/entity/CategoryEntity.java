@@ -36,7 +36,7 @@ public class CategoryEntity {
      * Name of the category.
      * Cannot be null and has a maximum length of 64 characters.
      */
-    @Column(name = "category_name", nullable = false, length = 64)
+    @Column(name = "category_name", nullable = false, length = 64, unique = true)
     private String categoryName;
 
     /**
