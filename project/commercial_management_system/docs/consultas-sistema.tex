@@ -1,0 +1,1246 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{pdflscape}
+
+% Configuración de la página
+\geometry{left=2.5cm,right=2cm,top=2.5cm,bottom=2.5cm}
+
+% Configuración de encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Sistema de Gestión Comercial - Consultas de Base de Datos}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Configuración de colores
+\definecolor{codeblue}{rgb}{0.1,0.2,0.6}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{apigreen}{rgb}{0.0,0.5,0.0}
+\definecolor{apiorange}{rgb}{1.0,0.5,0.0}
+
+% Configuración de código
+\lstdefinestyle{java}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegray},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=Java
+}
+
+\lstdefinestyle{sql}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegray},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=SQL
+}
+
+\lstdefinestyle{api}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegray},
+    keywordstyle=\color{apigreen},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{apiorange},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=java}
+
+% Configuración de hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Consultas de Base de Datos - Sistema de Gestión Comercial},
+    pdfauthor={Commercial Management System Team},
+    pdfsubject={Documentación de Consultas y API Futura},
+    pdfkeywords={Spring Data JPA, Consultas, API REST, PostgreSQL}
+}
+
+\title{\textbf{CONSULTAS DE BASE DE DATOS} \\ 
+       \large{Sistema de Gestión Comercial} \\
+       \large{Documentación Técnica y Especificación de API}}
+
+\author{Commercial Management System Team}
+\date{Noviembre 2024}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+
+\section{Introducción}
+
+\subsection{Propósito del Documento}
+
+Este documento presenta una especificación completa de todas las consultas implementadas en el Sistema de Gestión Comercial, incluyendo su funcionalidad actual a través de repositorios Spring Data JPA y su futura exposición mediante endpoints REST API.
+
+\subsection{Contexto del Sistema}
+
+El Sistema de Gestión Comercial está construido sobre Spring Boot 3.5.7 con Java 21, utilizando:
+\begin{itemize}
+    \item \textbf{Spring Data JPA}: Para abstracción de acceso a datos
+    \item \textbf{PostgreSQL}: Base de datos principal en producción
+    \item \textbf{H2}: Base de datos en memoria para pruebas
+    \item \textbf{Hibernate}: Como proveedor de JPA
+\end{itemize}
+
+\subsection{Arquitectura de Consultas}
+
+Las consultas se organizan en tres niveles:
+\begin{enumerate}
+    \item \textbf{Repositorios JPA}: Interfaz de acceso a datos actual
+    \item \textbf{Servicios}: Lógica de negocio (futuro)
+    \item \textbf{Controladores REST}: Endpoints públicos de API (futuro)
+\end{enumerate}
+
+\section{Tipos de Consultas Implementadas}
+
+\subsection{Clasificación por Tipo}
+
+Las consultas del sistema se clasifican en las siguientes categorías:
+
+\begin{table}[H]
+\centering
+\caption{Tipos de Consultas por Repositorio}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Repositorio} & \textbf{CRUD} & \textbf{Derivadas} & \textbf{@Query} & \textbf{Nativas} \\
+\hline
+CategoryRepository & ✓ & 1 & 1 & 1 \\
+ProductRepository & ✓ & 4 & 0 & 0 \\
+UserRepository & ✓ & 5 & 0 & 0 \\
+StoreRepository & ✓ & 2 & 3 & 0 \\
+SaleRepository & ✓ & 4 & 1 & 0 \\
+SaleProductRepository & ✓ & 0 & 2 & 0 \\
+DepartmentRepository & ✓ & 0 & 0 & 0 \\
+CityRepository & ✓ & 0 & 0 & 0 \\
+UserRoleRepository & ✓ & 0 & 0 & 0 \\
+\hline
+\textbf{TOTAL} & \textbf{9} & \textbf{16} & \textbf{7} & \textbf{1} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Complejidad de Consultas}
+
+\begin{itemize}
+    \item \textbf{Básicas (CRUD)}: Operaciones estándar de JpaRepository
+    \item \textbf{Derivadas}: Consultas generadas automáticamente por Spring Data
+    \item \textbf{JPQL}: Consultas personalizadas con Java Persistence Query Language
+    \item \textbf{SQL Nativo}: Consultas SQL directas para casos especiales
+\end{itemize}
+
+\section{Repositorio de Categorías (CategoryRepository)}
+
+\subsection{Descripción General}
+
+Maneja las operaciones relacionadas con la clasificación de productos en categorías.
+
+\subsection{Consultas Implementadas}
+
+\subsubsection{Operaciones CRUD Heredadas}
+
+\begin{lstlisting}[style=java, caption=Herencia de JpaRepository]
+public interface CategoryRepository extends JpaRepository<CategoryEntity, Long>
+// Proporciona automáticamente:
+// - findAll(): List<CategoryEntity>
+// - findById(Long id): Optional<CategoryEntity>
+// - save(CategoryEntity category): CategoryEntity
+// - deleteById(Long id): void
+// - count(): long
+// - existsById(Long id): boolean
+\end{lstlisting}
+
+\subsubsection{Búsqueda por Nombre de Categoría}
+
+\begin{lstlisting}[style=java, caption=Consulta Derivada - Buscar por Nombre]
+/**
+ * Encuentra categorías por su nombre exacto.
+ */
+List<CategoryEntity> findByCategoryName(String categoryName);
+\end{lstlisting}
+
+\textbf{SQL Generado:}
+\begin{lstlisting}[style=sql]
+SELECT c.* FROM category c WHERE c.category_name = ?1
+\end{lstlisting}
+
+\textbf{Uso en Pruebas:}
+\begin{lstlisting}[style=java]
+List<CategoryEntity> electronics = categoryRepository
+    .findByCategoryName("Electronics");
+\end{lstlisting}
+
+\subsubsection{Productos por Categoría (SQL Nativo)}
+
+\begin{lstlisting}[style=java, caption=Consulta SQL Nativa - Productos por Categoría]
+/**
+ * Obtiene todos los productos de una categoría específica.
+ * Utiliza SQL nativo para join con tabla intermedia.
+ */
+@Query(value = "SELECT p.* FROM product p " +
+        "INNER JOIN product_category cp ON p.product_id = cp.product_id_fk " +
+        "WHERE cp.category_id_fk = :categoryId",
+        nativeQuery = true)
+List<ProductEntity> findProductsByCategoryId(@Param("categoryId") Long categoryId);
+\end{lstlisting}
+
+\textbf{Justificación del SQL Nativo:}
+Esta consulta requiere acceso directo a la tabla de unión \texttt{product\_category}, lo que hace más eficiente el uso de SQL nativo que JPQL en este caso específico.
+
+\subsection{Futuros Endpoints de API}
+
+\begin{table}[H]
+\centering
+\caption{Endpoints Planificados - CategoryController}
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+\textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} \\
+\hline
+GET & /api/categories & Listar todas las categorías \\
+GET & /api/categories/\{id\} & Obtener categoría por ID \\
+POST & /api/categories & Crear nueva categoría \\
+PUT & /api/categories/\{id\} & Actualizar categoría \\
+DELETE & /api/categories/\{id\} & Eliminar categoría \\
+GET & /api/categories/search?name=\{name\} & Buscar por nombre \\
+GET & /api/categories/\{id\}/products & Productos de una categoría \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Ejemplo de Endpoint Futuro:}
+\begin{lstlisting}[style=api, caption=GET /api/categories/search?name=Electronics]
+{
+  "status": "success",
+  "data": [
+    {
+      "categoryId": 1,
+      "categoryName": "Electronics",
+      "productCount": 15
+    }
+  ],
+  "timestamp": "2024-11-20T10:30:00Z"
+}
+\end{lstlisting}
+
+\section{Repositorio de Productos (ProductRepository)}
+
+\subsection{Descripción General}
+
+Gestiona el catálogo completo de productos con funcionalidades avanzadas de búsqueda y filtrado.
+
+\subsection{Consultas Implementadas}
+
+\subsubsection{Filtrado por Rango de Precios}
+
+\begin{lstlisting}[style=java, caption=Consulta Derivada - Rango de Precios]
+/**
+ * Encuentra productos dentro de un rango de precios específico.
+ * @param priceAfter Precio mínimo (inclusivo)
+ * @param priceBefore Precio máximo (inclusivo)
+ */
+List<ProductEntity> findByPriceBetween(Double priceAfter, Double priceBefore);
+\end{lstlisting}
+
+\textbf{SQL Generado:}
+\begin{lstlisting}[style=sql]
+SELECT p.* FROM product p 
+WHERE p.price >= ?1 AND p.price <= ?2
+\end{lstlisting}
+
+\textbf{Casos de Uso:}
+\begin{itemize}
+    \item Filtros de búsqueda por precio en catálogo
+    \item Reportes de productos por segmento de precio
+    \item Análisis de distribución de precios
+\end{itemize}
+
+\subsubsection{Ordenamiento por Precio}
+
+\begin{lstlisting}[style=java, caption=Consultas de Ordenamiento]
+/**
+ * Obtiene productos ordenados por precio ascendente.
+ */
+List<ProductEntity> findByOrderByPriceAsc();
+
+/**
+ * Obtiene productos ordenados por precio descendente.
+ */
+List<ProductEntity> findByOrderByPriceDesc();
+\end{lstlisting}
+
+\textbf{SQL Generado (Ascendente):}
+\begin{lstlisting}[style=sql]
+SELECT p.* FROM product p ORDER BY p.price ASC
+\end{lstlisting}
+
+\textbf{SQL Generado (Descendente):}
+\begin{lstlisting}[style=sql]
+SELECT p.* FROM product p ORDER BY p.price DESC
+\end{lstlisting}
+
+\subsubsection{Productos Recientes}
+
+\begin{lstlisting}[style=java, caption=Filtrado por Fecha de Creación]
+/**
+ * Encuentra productos creados después de una fecha específica.
+ * @param createdAtAfter Fecha límite para filtrar productos recientes
+ */
+List<ProductEntity> findByCreatedAtAfter(LocalDateTime createdAtAfter);
+\end{lstlisting}
+
+\textbf{Ejemplo de Uso:}
+\begin{lstlisting}[style=java]
+// Productos agregados en los últimos 7 días
+LocalDateTime weekAgo = LocalDateTime.now().minusDays(7);
+List<ProductEntity> recentProducts = productRepository
+    .findByCreatedAtAfter(weekAgo);
+\end{lstlisting}
+
+\subsection{Futuros Endpoints de API}
+
+\begin{table}[H]
+\centering
+\caption{Endpoints Planificados - ProductController}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+\textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} \\
+\hline
+GET & /api/products & Listar productos con paginación \\
+GET & /api/products/\{id\} & Obtener producto por ID \\
+POST & /api/products & Crear nuevo producto \\
+PUT & /api/products/\{id\} & Actualizar producto \\
+DELETE & /api/products/\{id\} & Eliminar producto \\
+GET & /api/products/filter & Filtrar por precio, fecha, etc. \\
+GET & /api/products/recent & Productos recientes \\
+GET & /api/products/price-range & Por rango de precios \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Ejemplo de Endpoint con Filtros:}
+\begin{lstlisting}[style=api, caption=GET /api/products/filter?minPrice=100&maxPrice=500&sortBy=price&order=asc]
+{
+  "status": "success",
+  "data": {
+    "products": [
+      {
+        "productId": "550e8400-e29b-41d4-a716-446655440000",
+        "productName": "Laptop Gaming",
+        "price": 299.99,
+        "createdAt": "2024-11-15T14:30:00Z",
+        "categories": ["Electronics", "Gaming"]
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "size": 20,
+      "total": 1,
+      "totalPages": 1
+    }
+  },
+  "timestamp": "2024-11-20T10:30:00Z"
+}
+\end{lstlisting}
+
+\section{Repositorio de Usuarios (UserRepository)}
+
+\subsection{Descripción General}
+
+Maneja la información de usuarios del sistema con capacidades avanzadas de búsqueda geográfica y por atributos personales.
+
+\subsection{Consultas Implementadas}
+
+\subsubsection{Búsqueda por Apellido (Case-Insensitive)}
+
+\begin{lstlisting}[style=java, caption=Búsqueda Insensible a Mayúsculas]
+/**
+ * Encuentra usuarios por apellido ignorando mayúsculas/minúsculas.
+ */
+List<UserEntity> findByLastNameIgnoreCase(String lastName);
+\end{lstlisting}
+
+\textbf{Ventajas:}
+\begin{itemize}
+    \item Búsqueda flexible independiente del formato de entrada
+    \item Mejora la experiencia del usuario en formularios
+    \item Reduce errores de búsqueda por inconsistencias de formato
+\end{itemize}
+
+\subsubsection{Consultas Geográficas}
+
+\begin{lstlisting}[style=java, caption=Consultas por Ubicación Geográfica]
+/**
+ * Encuentra usuarios por ID de ciudad.
+ */
+List<UserEntity> findByCity_CityId(Long cityCityId);
+
+/**
+ * Encuentra usuarios por nombre de ciudad.
+ */
+List<UserEntity> findByCity_CityName(String cityCityName);
+
+/**
+ * Encuentra usuarios por departamento (navegación de relaciones).
+ */
+List<UserEntity> findByCity_Department_DepartmentName(String cityDepartmentDepartmentName);
+\end{lstlisting}
+
+\textbf{Navegación de Relaciones:}
+Spring Data JPA permite navegar automáticamente a través de las relaciones usando el guión bajo (\_) como separador:
+\begin{itemize}
+    \item \texttt{City\_CityName}: Navega de User a City y filtra por cityName
+    \item \texttt{City\_Department\_DepartmentName}: User → City → Department → departmentName
+\end{itemize}
+
+\subsubsection{Búsqueda con Patrones}
+
+\begin{lstlisting}[style=java, caption=Búsqueda con LIKE Pattern]
+/**
+ * Encuentra usuarios por patrón en el nombre usando SQL LIKE.
+ * Soporta wildcards: % (cualquier secuencia), _ (cualquier carácter)
+ */
+List<UserEntity> findByFirstNameLikeIgnoreCase(String firstName);
+\end{lstlisting}
+
+\textbf{Ejemplos de Uso:}
+\begin{lstlisting}[style=java]
+// Nombres que empiecen con "Jo"
+List<UserEntity> users1 = userRepository.findByFirstNameLikeIgnoreCase("jo%");
+
+// Nombres de exactamente 4 caracteres que empiecen con "J"
+List<UserEntity> users2 = userRepository.findByFirstNameLikeIgnoreCase("j___");
+
+// Nombres que contengan "an"
+List<UserEntity> users3 = userRepository.findByFirstNameLikeIgnoreCase("%an%");
+\end{lstlisting}
+
+\subsection{Casos de Uso Comerciales}
+
+\begin{table}[H]
+\centering
+\caption{Aplicaciones Comerciales de las Consultas de Usuario}
+\begin{tabular}{|p{4cm}|p{8cm}|}
+\hline
+\textbf{Consulta} & \textbf{Caso de Uso Comercial} \\
+\hline
+findByLastNameIgnoreCase & Sistema de búsqueda de clientes, CRM \\
+findByCity\_CityName & Marketing geolocalizado, análisis regional \\
+findByCity\_Department & Reportes por región, expansión territorial \\
+findByFirstNameLikeIgnoreCase & Autocompletado en formularios, búsqueda inteligente \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Futuros Endpoints de API}
+
+\begin{table}[H]
+\centering
+\caption{Endpoints Planificados - UserController}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+\textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} \\
+\hline
+GET & /api/users & Listar usuarios (admin only) \\
+GET & /api/users/\{id\} & Obtener usuario por ID \\
+POST & /api/users & Registrar nuevo usuario \\
+PUT & /api/users/\{id\} & Actualizar perfil usuario \\
+DELETE & /api/users/\{id\} & Eliminar cuenta usuario \\
+GET & /api/users/search & Búsqueda avanzada \\
+GET & /api/users/by-location & Usuarios por ubicación \\
+GET & /api/users/suggestions & Autocompletado de nombres \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Ejemplo de Búsqueda Avanzada:}
+\begin{lstlisting}[style=api, caption=GET /api/users/search?lastName=garcia&city=bogota&fuzzy=true]
+{
+  "status": "success",
+  "data": {
+    "users": [
+      {
+        "userId": "123e4567-e89b-12d3-a456-426614174000",
+        "firstName": "Ana",
+        "lastName": "García", 
+        "email": "ana.garcia@email.com",
+        "city": {
+          "cityName": "Bogotá",
+          "department": {
+            "departmentName": "Cundinamarca"
+          }
+        },
+        "role": {
+          "role": "USER"
+        }
+      }
+    ],
+    "searchCriteria": {
+      "lastName": "garcia",
+      "city": "bogota",
+      "caseInsensitive": true
+    }
+  }
+}
+\end{lstlisting}
+
+\section{Repositorio de Tiendas (StoreRepository)}
+
+\subsection{Descripción General}
+
+Gestiona las ubicaciones físicas y virtuales de tiendas, incluyendo su inventario y relaciones geográficas.
+
+\subsection{Consultas Implementadas}
+
+\subsubsection{Consultas Geográficas de Tiendas}
+
+\begin{lstlisting}[style=java, caption=Localización de Tiendas]
+/**
+ * Encuentra tiendas por ID de ciudad.
+ */
+List<StoreEntity> findByCity_CityId(Long cityCityId);
+
+/**
+ * Encuentra tiendas por nombre de ciudad.
+ */
+List<StoreEntity> findByCity_CityName(String cityCityName);
+\end{lstlisting}
+
+\textbf{Aplicaciones:}
+\begin{itemize}
+    \item Localización de tiendas cercanas al usuario
+    \item Análisis de cobertura geográfica
+    \item Planificación de expansión territorial
+    \item Gestión de logistics y distribución
+\end{itemize}
+
+\subsubsection{Consultas de Inventario (JPQL)}
+
+\begin{lstlisting}[style=java, caption=Inventario por Tienda - JPQL]
+/**
+ * Obtiene productos disponibles en una tienda específica.
+ */
+@Query("SELECT sp.product FROM StoreProductEntity sp WHERE sp.store.storeId = :storeId")
+List<ProductEntity> findProductsByStoreId(@Param("storeId") UUID storeId);
+
+/**
+ * Obtiene productos por nombre de tienda.
+ */
+@Query("SELECT sp.product FROM StoreProductEntity sp WHERE sp.store.storeName = :storeName")
+List<ProductEntity> findProductByStoreName(String storeName);
+
+/**
+ * Obtiene inventario detallado (incluye stock y ubicación).
+ */
+@Query("SELECT sp FROM StoreProductEntity sp WHERE sp.store.storeId = :storeId")
+List<StoreProductEntity> findStoreProductsByStoreId(@Param("storeId") UUID storeId);
+\end{lstlisting}
+
+\subsubsection{Diferencias entre las Consultas de Inventario}
+
+\begin{table}[H]
+\centering
+\caption{Comparación de Consultas de Inventario}
+\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Consulta} & \textbf{Retorna} & \textbf{Información} & \textbf{Uso} \\
+\hline
+findProductsByStoreId & ProductEntity & Solo productos & Catálogo simple \\
+findProductByStoreName & ProductEntity & Solo productos & Búsqueda por nombre \\
+findStoreProductsByStoreId & StoreProductEntity & Producto + Stock + Ubicación & Gestión de inventario \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Ejemplo de Uso Avanzado}
+
+\begin{lstlisting}[style=java, caption=Gestión de Inventario Completa]
+// Obtener inventario detallado de una tienda
+UUID storeId = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
+List<StoreProductEntity> inventory = storeRepository
+    .findStoreProductsByStoreId(storeId);
+
+// Procesar cada item del inventario
+for (StoreProductEntity item : inventory) {
+    ProductEntity product = item.getProduct();
+    Long stock = item.getStock();
+    String location = item.getAddress();
+    
+    System.out.printf("Producto: %s, Stock: %d, Ubicación: %s%n",
+        product.getProductName(), stock, location);
+}
+\end{lstlisting}
+
+\subsection{Futuros Endpoints de API}
+
+\begin{table}[H]
+\centering
+\caption{Endpoints Planificados - StoreController}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+\textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} \\
+\hline
+GET & /api/stores & Listar todas las tiendas \\
+GET & /api/stores/\{id\} & Obtener tienda por ID \\
+POST & /api/stores & Crear nueva tienda \\
+PUT & /api/stores/\{id\} & Actualizar tienda \\
+GET & /api/stores/nearby & Tiendas cerca de ubicación \\
+GET & /api/stores/\{id\}/inventory & Inventario de tienda \\
+GET & /api/stores/\{id\}/products & Productos disponibles \\
+POST & /api/stores/\{id\}/inventory & Agregar stock \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Ejemplo de Endpoint de Inventario:}
+\begin{lstlisting}[style=api, caption=GET /api/stores/550e8400-e29b-41d4-a716-446655440000/inventory]
+{
+  "status": "success",
+  "data": {
+    "storeId": "550e8400-e29b-41d4-a716-446655440000",
+    "storeName": "Tech Store Centro",
+    "city": {
+      "cityName": "Bogotá",
+      "departmentName": "Cundinamarca"
+    },
+    "inventory": [
+      {
+        "product": {
+          "productId": "123e4567-e89b-12d3-a456-426614174000",
+          "productName": "Laptop Gaming",
+          "price": 1200.00
+        },
+        "stock": 15,
+        "location": "Pasillo A, Estante 3",
+        "lastUpdated": "2024-11-20T09:15:00Z"
+      }
+    ],
+    "totalItems": 1,
+    "totalValue": 18000.00
+  },
+  "timestamp": "2024-11-20T10:30:00Z"
+}
+\end{lstlisting}
+
+\section{Repositorio de Ventas (SaleRepository)}
+
+\subsection{Descripción General}
+
+Maneja todas las transacciones de venta del sistema, proporcionando capacidades de análisis y reportes.
+
+\subsection{Consultas Implementadas}
+
+\subsubsection{Consultas por Usuario}
+
+\begin{lstlisting}[style=java, caption=Ventas por Usuario]
+/**
+ * Encuentra ventas por ID de usuario.
+ */
+List<SaleEntity> findByUser_UserId(UUID userUserId);
+
+/**
+ * Encuentra ventas por entidad de usuario completa.
+ */
+List<SaleEntity> findByUser_(UserEntity user);
+
+/**
+ * Encuentra ventas por nombre del comprador.
+ */
+List<SaleEntity> findByUser_FirstName(String userFirstName);
+\end{lstlisting}
+
+\textbf{Casos de Uso:}
+\begin{itemize}
+    \item Historial de compras del cliente
+    \item Análisis de comportamiento de compra
+    \item Servicio al cliente y soporte
+    \item Programas de fidelización
+\end{itemize}
+
+\subsubsection{Análisis de Ventas por Fecha (JPQL)}
+
+\begin{lstlisting}[style=java, caption=Agregación de Ventas por Fecha]
+/**
+ * Calcula el total de ventas para una fecha específica.
+ * Utiliza función SUM de SQL para agregar montos.
+ */
+@Query("SELECT SUM(s.totalAmount) FROM SaleEntity s WHERE s.saleDate = ?1")
+Long sumTotalAmountBySaleDate(LocalDateTime saleDate);
+\end{lstlisting}
+
+\textbf{Aplicaciones Comerciales:}
+\begin{itemize}
+    \item Reportes diarios de ventas
+    \item Análisis de tendencias temporales
+    \item Métricas de rendimiento por período
+    \item Planificación financiera
+\end{itemize}
+
+\subsubsection{Filtrado por Monto}
+
+\begin{lstlisting}[style=java, caption=Ventas de Alto Valor]
+/**
+ * Encuentra ventas con monto superior a un umbral.
+ */
+List<SaleEntity> findByTotalAmountAfter(Long totalAmountAfter);
+\end{lstlisting}
+
+\textbf{Ejemplo de Análisis:}
+\begin{lstlisting}[style=java]
+// Ventas de alto valor (> $500)
+List<SaleEntity> highValueSales = saleRepository
+    .findByTotalAmountAfter(50000L); // Valor en centavos
+
+// Análisis de ventas del día
+LocalDateTime today = LocalDateTime.now()
+    .withHour(0).withMinute(0).withSecond(0).withNano(0);
+Long dailySales = saleRepository.sumTotalAmountBySaleDate(today);
+\end{lstlisting}
+
+\subsection{Futuros Endpoints de API}
+
+\begin{table}[H]
+\centering
+\caption{Endpoints Planificados - SaleController}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+\textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} \\
+\hline
+GET & /api/sales & Listar ventas con filtros \\
+GET & /api/sales/\{id\} & Obtener venta por ID \\
+POST & /api/sales & Procesar nueva venta \\
+GET & /api/sales/user/\{userId\} & Historial del usuario \\
+GET & /api/sales/analytics/daily & Ventas diarias \\
+GET & /api/sales/analytics/high-value & Ventas de alto valor \\
+GET & /api/sales/reports/period & Reportes por período \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Ejemplo de Endpoint de Análisis:}
+\begin{lstlisting}[style=api, caption=GET /api/sales/analytics/daily?date=2024-11-20]
+{
+  "status": "success",
+  "data": {
+    "date": "2024-11-20",
+    "totalSales": 125000, // En centavos
+    "totalSalesFormatted": "$1,250.00",
+    "transactionCount": 28,
+    "averageTransaction": 4464, // En centavos  
+    "averageTransactionFormatted": "$44.64",
+    "topCustomers": [
+      {
+        "userId": "123e4567-e89b-12d3-a456-426614174000",
+        "customerName": "Ana García",
+        "totalPurchases": 15000,
+        "transactionCount": 3
+      }
+    ],
+    "hourlyBreakdown": [
+      {
+        "hour": "09:00",
+        "sales": 8500,
+        "transactions": 4
+      }
+    ]
+  },
+  "timestamp": "2024-11-20T10:30:00Z"
+}
+\end{lstlisting}
+
+\section{Repositorio de Venta-Producto (SaleProductRepository)}
+
+\subsection{Descripción General}
+
+Maneja la relación muchos-a-muchos entre ventas y productos, con funcionalidades especializadas en análisis de productos más vendidos.
+
+\subsection{Consultas Implementadas}
+
+\subsubsection{Productos Más Vendidos (JPQL con GROUP BY)}
+
+\begin{lstlisting}[style=java, caption=Análisis de Productos Más Vendidos]
+/**
+ * Obtiene productos ordenados por cantidad total vendida.
+ * Utiliza GROUP BY y ORDER BY para análisis de ventas.
+ */
+@Query("SELECT sp.product FROM SaleProductEntity sp " +
+        "GROUP BY sp.product " +
+        "ORDER BY SUM(sp.quantity) DESC")
+List<ProductEntity> findBestSellingProducts();
+\end{lstlisting}
+
+\subsubsection{Top N Productos Más Vendidos}
+
+\begin{lstlisting}[style=java, caption=Top N con LIMIT]
+/**
+ * Obtiene los N productos más vendidos.
+ * @param limit Número máximo de productos a retornar
+ */
+@Query("SELECT sp.product FROM SaleProductEntity sp " +
+        "GROUP BY sp.product " +
+        "ORDER BY SUM(sp.quantity) DESC " +
+        "LIMIT :limit")
+List<ProductEntity> findTopBestSellingProducts(@Param("limit") int limit);
+\end{lstlisting}
+
+\subsection{SQL Generado y Análisis de Performance}
+
+\textbf{SQL Equivalente:}
+\begin{lstlisting}[style=sql]
+-- findBestSellingProducts()
+SELECT p.product_id, p.product_name, p.price, 
+       SUM(sp.quantity) as total_sold
+FROM sale_product sp
+INNER JOIN product p ON sp.product_id_fk = p.product_id
+GROUP BY p.product_id, p.product_name, p.price
+ORDER BY total_sold DESC;
+
+-- findTopBestSellingProducts(5)  
+SELECT p.product_id, p.product_name, p.price,
+       SUM(sp.quantity) as total_sold
+FROM sale_product sp
+INNER JOIN product p ON sp.product_id_fk = p.product_id  
+GROUP BY p.product_id, p.product_name, p.price
+ORDER BY total_sold DESC
+LIMIT 5;
+\end{lstlisting}
+
+\subsection{Casos de Uso Comerciales}
+
+\begin{table}[H]
+\centering
+\caption{Aplicaciones de Análisis de Productos}
+\begin{tabular}{|p{4cm}|p{8cm}|}
+\hline
+\textbf{Consulta} & \textbf{Aplicación Comercial} \\
+\hline
+findBestSellingProducts & Dashboard de gerencia, análisis de tendencias \\
+findTopBestSellingProducts & Recomendaciones, promociones, gestión de stock \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Futuros Endpoints de API}
+
+\begin{table}[H]
+\centering
+\caption{Endpoints Planificados - Analytics/ProductController}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+\textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} \\
+\hline
+GET & /api/analytics/best-sellers & Productos más vendidos \\
+GET & /api/analytics/top-products & Top N productos \\
+GET & /api/analytics/product-performance & Rendimiento por producto \\
+GET & /api/analytics/sales-trends & Tendencias de ventas \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Ejemplo de Endpoint de Análisis:}
+\begin{lstlisting}[style=api, caption=GET /api/analytics/top-products?limit=5&period=30days]
+{
+  "status": "success",
+  "data": {
+    "period": "Last 30 days",
+    "totalProductsSold": 1250,
+    "topProducts": [
+      {
+        "rank": 1,
+        "product": {
+          "productId": "123e4567-e89b-12d3-a456-426614174000",
+          "productName": "Laptop Gaming Pro",
+          "price": 1299.99
+        },
+        "quantitySold": 85,
+        "totalRevenue": 110499.15,
+        "percentageOfTotal": 8.8,
+        "trend": "↗ +15% vs previous period"
+      },
+      {
+        "rank": 2,
+        "product": {
+          "productId": "456e7890-e12c-34f5-b678-901234567890",
+          "productName": "Wireless Mouse",
+          "price": 29.99
+        },
+        "quantitySold": 120,
+        "totalRevenue": 3598.80,
+        "percentageOfTotal": 9.6,
+        "trend": "↘ -5% vs previous period"
+      }
+    ],
+    "analytics": {
+      "totalRevenue": 125000.00,
+      "averageOrderValue": 100.00,
+      "topCategoryBySales": "Electronics"
+    }
+  },
+  "timestamp": "2024-11-20T10:30:00Z"
+}
+\end{lstlisting}
+
+\section{Repositorios Básicos}
+
+\subsection{DepartmentRepository}
+
+\textbf{Descripción:} Maneja divisiones geográficas administrativas.
+
+\textbf{Funcionalidad Actual:}
+\begin{itemize}
+    \item Operaciones CRUD básicas heredadas de JpaRepository
+    \item No tiene consultas personalizadas implementadas
+\end{itemize}
+
+\textbf{Futuras Expansiones:}
+\begin{lstlisting}[style=java, caption=Consultas Futuras Sugeridas]
+// Consultas que podrían agregarse:
+List<DepartmentEntity> findByDepartmentNameContainingIgnoreCase(String name);
+List<CityEntity> findCitiesByDepartmentId(Long departmentId);
+Long countCitiesByDepartmentId(Long departmentId);
+\end{lstlisting}
+
+\subsection{CityRepository}
+
+\textbf{Descripción:} Gestiona ciudades dentro de departamentos.
+
+\textbf{Funcionalidad Actual:}
+\begin{itemize}
+    \item Operaciones CRUD básicas heredadas de JpaRepository
+    \item No tiene consultas personalizadas implementadas
+\end{itemize}
+
+\textbf{Futuras Expansiones:}
+\begin{lstlisting}[style=java, caption=Consultas Futuras Sugeridas]
+// Consultas que podrían agregarse:
+List<CityEntity> findByDepartment_DepartmentId(Long departmentId);
+List<CityEntity> findByCityNameContainingIgnoreCase(String cityName);
+Long countUsersByCityId(Long cityId);
+Long countStoresByCityId(Long cityId);
+\end{lstlisting}
+
+\subsection{UserRoleRepository}
+
+\textbf{Descripción:} Maneja los roles del sistema (ADMIN, USER, MANAGER).
+
+\textbf{Funcionalidad Actual:}
+\begin{itemize}
+    \item Operaciones CRUD básicas heredadas de JpaRepository
+    \item No tiene consultas personalizadas implementadas
+\end{itemize}
+
+\textbf{Futuras Expansiones:}
+\begin{lstlisting}[style=java, caption=Consultas Futuras Sugeridas]
+// Consultas que podrían agregarse:
+Optional<UserRoleEntity> findByRole(UserRole role);
+List<UserEntity> findUsersByRoleId(Long roleId);
+Long countUsersByRole(UserRole role);
+\end{lstlisting}
+
+\section{Optimización y Performance}
+
+\subsection{Estrategias de Optimización Implementadas}
+
+\subsubsection{Uso de Índices}
+
+\begin{table}[H]
+\centering
+\caption{Índices Recomendados para Optimización}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Tabla} & \textbf{Columna(s)} & \textbf{Justificación} \\
+\hline
+category & category\_name & Búsqueda frecuente por nombre \\
+product & price & Filtros y ordenamiento por precio \\
+product & created\_at & Consultas por productos recientes \\
+users & last\_name & Búsqueda de usuarios \\
+users & city\_id\_fk & Consultas geográficas \\
+sale & sale\_date & Análisis temporal \\
+sale & user\_id\_fk & Historial por usuario \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Consultas Eficientes}
+
+\textbf{Buenas Prácticas Implementadas:}
+\begin{itemize}
+    \item Uso de consultas derivadas para operaciones simples
+    \item JPQL para consultas complejas con mejor portabilidad
+    \item SQL nativo solo cuando es necesario (como en product\_category join)
+    \item Parámetros nombrados (@Param) para mejor legibilidad
+\end{itemize}
+
+\subsection{Consideraciones para API Futura}
+
+\subsubsection{Paginación}
+
+\begin{lstlisting}[style=java, caption=Implementación de Paginación]
+// Ejemplo de cómo se implementará la paginación en controladores
+@GetMapping("/api/products")
+public ResponseEntity<PagedResponse<ProductDTO>> getProducts(
+    @RequestParam(defaultValue = "0") int page,
+    @RequestParam(defaultValue = "20") int size,
+    @RequestParam(defaultValue = "productName") String sortBy) {
+    
+    Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+    Page<ProductEntity> products = productRepository.findAll(pageable);
+    
+    // Convertir a DTO y retornar
+    return ResponseEntity.ok(buildPagedResponse(products));
+}
+\end{lstlisting}
+
+\subsubsection{Caching}
+
+\textbf{Estrategias de Cache Planificadas:}
+\begin{itemize}
+    \item Redis para datos frecuentemente consultados
+    \item Cache de productos más vendidos (actualización cada hora)
+    \item Cache de totales de ventas diarias
+    \item Cache de estructura geográfica (departamentos/ciudades)
+\end{itemize}
+
+\section{Seguridad y Validación}
+
+\subsection{Consideraciones de Seguridad}
+
+\subsubsection{Control de Acceso por Rol}
+
+\begin{table}[H]
+\centering
+\caption{Matriz de Permisos por Endpoint (Futuro)}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Endpoint} & \textbf{ADMIN} & \textbf{MANAGER} & \textbf{USER} \\
+\hline
+GET /api/users & ✓ & ✓ & ✗ \\
+GET /api/sales/analytics & ✓ & ✓ & ✗ \\
+POST /api/products & ✓ & ✓ & ✗ \\
+GET /api/products & ✓ & ✓ & ✓ \\
+GET /api/sales/user/\{id\} & ✓ & ✓ & Solo propias \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Validaciones}
+
+\textbf{Validaciones Implementadas a Nivel de Entidad:}
+\begin{lstlisting}[style=java, caption=Ejemplo de Validaciones JPA]
+@Entity
+public class ProductEntity {
+    @Column(name = "product_name", nullable = false, length = 128)
+    private String productName; // No puede ser null, máximo 128 caracteres
+    
+    @Column(name = "price", nullable = false)
+    private Double price; // No puede ser null
+    
+    // Futuras validaciones con Bean Validation:
+    // @Min(value = 0, message = "El precio no puede ser negativo")
+    // @NotBlank(message = "El nombre del producto es obligatorio")
+}
+\end{lstlisting}
+
+\section{Testing y Quality Assurance}
+
+\subsection{Cobertura de Pruebas Actual}
+
+\begin{table}[H]
+\centering
+\caption{Estado de Pruebas por Repositorio}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Repositorio} & \textbf{Pruebas} & \textbf{Métodos Probados} & \textbf{Cobertura} \\
+\hline
+CategoryRepository & 6 & 6/6 & 100\% \\
+ProductRepository & 8 & 8/8 & 100\% \\
+UserRepository & 9 & 9/9 & 100\% \\
+StoreRepository & 9 & 9/9 & 100\% \\
+SaleRepository & 9 & 9/9 & 100\% \\
+SaleProductRepository & 4 & 4/4 & 100\% \\
+DepartmentRepository & 4 & 4/4 & 100\% \\
+CityRepository & 4 & 4/4 & 100\% \\
+UserRoleRepository & 4 & 4/4 & 100\% \\
+\hline
+\textbf{TOTAL} & \textbf{57} & \textbf{57/57} & \textbf{100\%} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Ejemplos de Casos de Prueba}
+
+\subsubsection{Prueba de Consulta Compleja}
+
+\begin{lstlisting}[style=java, caption=Test de Consulta con Relaciones]
+@Test
+public void testFindByCity_Department_DepartmentName() {
+    // Configuración de datos de prueba
+    DepartmentEntity department = new DepartmentEntity();
+    department.setDepartmentName("Cundinamarca");
+    departmentRepository.save(department);
+    
+    CityEntity city = new CityEntity();
+    city.setCityName("Bogotá");
+    city.setDepartment(department);
+    cityRepository.save(city);
+    
+    UserEntity user = new UserEntity();
+    user.setFirstName("John");
+    user.setLastName("Doe");
+    user.setCity(city);
+    // ... configuración completa del usuario
+    userRepository.save(user);
+    
+    // Ejecución de la consulta
+    List<UserEntity> users = userRepository
+        .findByCity_Department_DepartmentName("Cundinamarca");
+    
+    // Verificaciones
+    assertThat(users).isNotNull();
+    assertThat(users).hasSize(1);
+    assertThat(users.get(0).getFirstName()).isEqualTo("John");
+    assertThat(users.get(0).getCity().getDepartment().getDepartmentName())
+        .isEqualTo("Cundinamarca");
+}
+\end{lstlisting}
+
+\section{Roadmap de Desarrollo de API}
+
+\subsection{Fase 1: Endpoints Básicos (Próximos 2 meses)}
+
+\textbf{Prioridad Alta:}
+\begin{itemize}
+    \item CRUD completo para productos
+    \item Autenticación y autorización básica
+    \item Búsqueda de productos con filtros
+    \item Gestión básica de usuarios
+\end{itemize}
+
+\subsection{Fase 2: Funcionalidades Avanzadas (2-4 meses)}
+
+\textbf{Prioridad Media:}
+\begin{itemize}
+    \item Sistema de ventas completo
+    \item Analytics y reportes básicos
+    \item Gestión de inventario por tienda
+    \item APIs geográficas (ciudades, departamentos)
+\end{itemize}
+
+\subsection{Fase 3: Optimización y Escalabilidad (4-6 meses)}
+
+\textbf{Prioridad Baja:}
+\begin{itemize}
+    \item Cache distribuido con Redis
+    \item Analytics avanzados en tiempo real
+    \item API de recomendaciones
+    \item Métricas y monitoreo
+\end{itemize}
+
+\section{Conclusiones}
+
+\subsection{Estado Actual del Sistema}
+
+El Sistema de Gestión Comercial cuenta con una base sólida de 33 consultas distribuidas across 9 repositorios, proporcionando:
+
+\begin{itemize}
+    \item \textbf{Cobertura Completa}: Todas las operaciones de negocio básicas están implementadas
+    \item \textbf{Testing Exhaustivo}: 100\% de cobertura en pruebas unitarias de repositorios
+    \item \textbf{Flexibilidad}: Consultas que soportan múltiples casos de uso comerciales
+    \item \textbf{Performance}: Uso eficiente de JPA y consultas optimizadas
+\end{itemize}
+
+\subsection{Preparación para API REST}
+
+Las consultas implementadas proporcionan una base sólida para los futuros endpoints de API:
+
+\begin{itemize}
+    \item Operaciones CRUD estándar para todos los recursos
+    \item Búsquedas avanzadas con filtros múltiples
+    \item Capacidades de análisis y reporting
+    \item Soporte para operaciones geográficas
+    \item Fundación para sistemas de recomendación
+\end{itemize}
+
+\subsection{Valor para el Negocio}
+
+Las consultas implementadas habilitan funcionalidades críticas para un sistema comercial:
+
+\begin{itemize}
+    \item \textbf{Gestión de Catálogo}: Búsqueda y filtrado avanzado de productos
+    \item \textbf{CRM}: Gestión completa de clientes y usuarios
+    \item \textbf{Inventario}: Control de stock en múltiples ubicaciones
+    \item \textbf{Análisis}: Reportes de ventas y productos más vendidos
+    \item \textbf{Geografía}: Soporte para operaciones multi-ubicación
+\end{itemize}
+
+\subsection{Próximos Pasos}
+
+\begin{enumerate}
+    \item \textbf{Implementar Capa de Servicios}: Lógica de negocio que utilice las consultas existentes
+    \item \textbf{Desarrollar API REST}: Endpoints que expongan las funcionalidades implementadas
+    \item \textbf{Agregar Seguridad}: Autenticación JWT y autorización basada en roles
+    \item \textbf{Implementar Validaciones}: Bean Validation para entrada de datos
+    \item \textbf{Optimizar Performance}: Índices de base de datos y caching
+\end{enumerate}
+
+El sistema está técnicamente preparado para evolucionar hacia una API REST completa que pueda servir aplicaciones web y móviles con todas las funcionalidades de un sistema de gestión comercial moderno.
+
+\end{document}
