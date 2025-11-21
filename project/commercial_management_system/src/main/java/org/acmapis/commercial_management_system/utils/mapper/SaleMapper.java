@@ -51,7 +51,7 @@ public interface SaleMapper {
     /**
      * Updates an existing SaleEntity with data from SaleModel, preserving the ID.
      *
-     * @param saleModel the SaleModel containing the updated data
+     * @param saleModel  the SaleModel containing the updated data
      * @param saleEntity the existing SaleEntity to update
      */
     void updateEntityFromModel(SaleModel saleModel, @MappingTarget SaleEntity saleEntity);

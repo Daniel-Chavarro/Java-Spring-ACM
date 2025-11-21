@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -50,4 +51,9 @@ public class ProductModel {
      * Timestamp when the product was last updated.
      */
     private LocalDateTime updatedAt;
+
+    /**
+     * List of categories associated with the product.
+     */
+    private List<CategoryModel> categories;
 }

@@ -51,7 +51,7 @@ public interface StoreProductMapper {
     /**
      * Updates an existing StoreProductEntity with data from StoreProductModel, preserving the ID.
      *
-     * @param storeProductModel the StoreProductModel containing the updated data
+     * @param storeProductModel  the StoreProductModel containing the updated data
      * @param storeProductEntity the existing StoreProductEntity to update
      */
     void updateEntityFromModel(StoreProductModel storeProductModel, @MappingTarget StoreProductEntity storeProductEntity);

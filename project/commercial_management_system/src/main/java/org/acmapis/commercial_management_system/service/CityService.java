@@ -38,7 +38,7 @@ public class CityService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param cityRepository the repository for city data access operations
-     * @param cityMapper the mapper for city entity-model conversions
+     * @param cityMapper     the mapper for city entity-model conversions
      */
     @Autowired
     public CityService(CityRepository cityRepository, CityMapper cityMapper) {
@@ -83,14 +83,14 @@ public class CityService {
      * Updates an existing city in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param cityId The unique identifier of the city to update
+     * @param cityId    The unique identifier of the city to update
      * @param cityModel The CityModel containing the updated city data
      * @return The updated CityModel
      * @throws RuntimeException if the city with the given ID is not found
      */
     public CityModel updateCity(Long cityId, CityModel cityModel) {
         CityEntity existingEntity = cityRepository.findById(cityId)
-            .orElseThrow(() -> new RuntimeException("City not found with ID: " + cityId));
+                .orElseThrow(() -> new RuntimeException("City not found with ID: " + cityId));
 
         cityMapper.updateEntityFromModel(cityModel, existingEntity);
 

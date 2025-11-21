@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -70,4 +71,13 @@ public class ProductEntity {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    /**
+     * Many-to-many relationship with CategoryEntity.
+     * A product can belong to multiple categories.
+     * Cascade type is set to MERGE to propagate merge operations.
+     * Fetch type is set to LAZY to optimize performance.
+     */
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<CategoryEntity> categories;
 }

@@ -51,7 +51,7 @@ public interface UserRoleMapper {
     /**
      * Updates an existing UserRoleEntity with data from UserRoleModel, preserving the ID.
      *
-     * @param userRoleModel the UserRoleModel containing the updated data
+     * @param userRoleModel  the UserRoleModel containing the updated data
      * @param userRoleEntity the existing UserRoleEntity to update
      */
     void updateEntityFromModel(UserRoleModel userRoleModel, @MappingTarget UserRoleEntity userRoleEntity);

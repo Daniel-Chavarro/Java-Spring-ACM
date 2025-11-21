@@ -39,7 +39,7 @@ public class UserService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param userRepository the repository for user data access operations
-     * @param userMapper the mapper for entity-model conversions
+     * @param userMapper     the mapper for entity-model conversions
      */
     @Autowired
     public UserService(UserRepository userRepository, UserMapper userMapper) {
@@ -84,14 +84,14 @@ public class UserService {
      * Updates an existing user in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param userId The unique identifier of the user to update
+     * @param userId    The unique identifier of the user to update
      * @param userModel The UserModel containing the updated user data
      * @return The updated UserModel
      * @throws RuntimeException if the user with the given ID is not found
      */
     public UserModel updateUser(UUID userId, UserModel userModel) {
         UserEntity existingEntity = userRepository.findById(userId)
-            .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
 
         userMapper.updateEntityFromModel(userModel, existingEntity);
 

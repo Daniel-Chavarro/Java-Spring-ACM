@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 /**
  * Entity representing the inventory relationship between stores and products.
  * This entity manages stock levels and location information for products in specific stores.

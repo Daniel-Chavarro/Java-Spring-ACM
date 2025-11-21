@@ -8,7 +8,7 @@ import org.mapstruct.MappingTarget;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface ProductMapper{
+public interface ProductMapper {
     /**
      * Converts a ProductEntity to a ProductModel.
      *
@@ -44,7 +44,7 @@ public interface ProductMapper{
     /**
      * Updates an existing ProductEntity with data from ProductModel, preserving the ID.
      *
-     * @param productModel the ProductModel containing the updated data
+     * @param productModel  the ProductModel containing the updated data
      * @param productEntity the existing ProductEntity to update
      */
     void updateEntityFromModel(ProductModel productModel, @MappingTarget ProductEntity productEntity);

@@ -44,7 +44,7 @@ public interface DepartmentMapper {
     /**
      * Updates an existing DepartmentEntity with data from DepartmentModel, preserving the ID.
      *
-     * @param departmentModel the DepartmentModel containing the updated data
+     * @param departmentModel  the DepartmentModel containing the updated data
      * @param departmentEntity the existing DepartmentEntity to update
      */
     void updateEntityFromModel(DepartmentModel departmentModel, @MappingTarget DepartmentEntity departmentEntity);

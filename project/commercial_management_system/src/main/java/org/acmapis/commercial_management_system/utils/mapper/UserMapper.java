@@ -51,7 +51,7 @@ public interface UserMapper {
     /**
      * Updates an existing UserEntity with data from UserModel, preserving the ID.
      *
-     * @param userModel the UserModel containing the updated data
+     * @param userModel  the UserModel containing the updated data
      * @param userEntity the existing UserEntity to update
      */
     void updateEntityFromModel(UserModel userModel, @MappingTarget UserEntity userEntity);

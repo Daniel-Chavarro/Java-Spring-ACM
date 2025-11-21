@@ -12,13 +12,19 @@ import lombok.Getter;
  */
 @Getter
 public enum UserRole {
-    /** Administrator role with full system access and permissions */
+    /**
+     * Administrator role with full system access and permissions
+     */
     ADMIN("ADMIN"),
 
-    /** Regular user role with limited access to basic functionality */
+    /**
+     * Regular user role with limited access to basic functionality
+     */
     USER("USER"),
 
-    /** Manager role with moderate permissions for managing operations */
+    /**
+     * Manager role with moderate permissions for managing operations
+     */
     MANAGER("MODERATOR");
 
     /**

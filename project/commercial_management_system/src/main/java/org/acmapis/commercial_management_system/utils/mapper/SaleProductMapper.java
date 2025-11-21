@@ -8,7 +8,7 @@ import org.mapstruct.MappingTarget;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {ProductMapper.class, SaleMapper.class})
-public interface SaleProductMapper{
+public interface SaleProductMapper {
     /**
      * Converts a SaleProductEntity to a SaleProductModel.
      *
@@ -44,7 +44,7 @@ public interface SaleProductMapper{
     /**
      * Updates an existing SaleProductEntity with data from SaleProductModel, preserving the ID.
      *
-     * @param saleProductModel the SaleProductModel containing the updated data
+     * @param saleProductModel  the SaleProductModel containing the updated data
      * @param saleProductEntity the existing SaleProductEntity to update
      */
     void updateEntityFromModel(SaleProductModel saleProductModel, @MappingTarget SaleProductEntity saleProductEntity);

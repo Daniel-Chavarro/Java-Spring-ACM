@@ -51,7 +51,7 @@ public interface CityMapper {
     /**
      * Updates an existing CityEntity with data from CityModel, preserving the ID.
      *
-     * @param cityModel the CityModel containing the updated data
+     * @param cityModel  the CityModel containing the updated data
      * @param cityEntity the existing CityEntity to update
      */
     void updateEntityFromModel(CityModel cityModel, @MappingTarget CityEntity cityEntity);

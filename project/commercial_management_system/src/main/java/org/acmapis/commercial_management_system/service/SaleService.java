@@ -40,7 +40,7 @@ public class SaleService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param saleRepository the repository for sale data access operations
-     * @param saleMapper the mapper for entity-model conversions
+     * @param saleMapper     the mapper for entity-model conversions
      */
     @Autowired
     public SaleService(SaleRepository saleRepository, SaleMapper saleMapper) {
@@ -85,14 +85,14 @@ public class SaleService {
      * Updates an existing sale in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param saleId The unique identifier of the sale to update
+     * @param saleId    The unique identifier of the sale to update
      * @param saleModel The SaleModel containing the updated sale data
      * @return The updated SaleModel
      * @throws RuntimeException if the sale with the given ID is not found
      */
     public SaleModel updateSale(UUID saleId, SaleModel saleModel) {
         SaleEntity existingEntity = saleRepository.findById(saleId)
-            .orElseThrow(() -> new RuntimeException("Sale not found with ID: " + saleId));
+                .orElseThrow(() -> new RuntimeException("Sale not found with ID: " + saleId));
 
         saleMapper.updateEntityFromModel(saleModel, existingEntity);
 

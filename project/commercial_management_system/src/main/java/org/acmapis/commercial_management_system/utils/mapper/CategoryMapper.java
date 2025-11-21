@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2025-11-20
  */
 @Mapper(componentModel = "spring", uses = {ProductMapper.class})
-public interface CategoryMapper{
+public interface CategoryMapper {
     /**
      * Converts a CategoryEntity to a CategoryModel.
      *
@@ -51,7 +51,7 @@ public interface CategoryMapper{
     /**
      * Updates an existing CategoryEntity with data from CategoryModel, preserving the ID.
      *
-     * @param categoryModel the CategoryModel containing the updated data
+     * @param categoryModel  the CategoryModel containing the updated data
      * @param categoryEntity the existing CategoryEntity to update
      */
     void updateEntityFromModel(CategoryModel categoryModel, @MappingTarget CategoryEntity categoryEntity);

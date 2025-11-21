@@ -34,7 +34,7 @@ public class CityEntity {
      * Name of the city.
      * Cannot be null and has a maximum length of 64 characters.
      */
-    @Column(name = "city_name",nullable = false, length = 64)
+    @Column(name = "city_name", nullable = false, length = 64)
     private String cityName;
 
     /**

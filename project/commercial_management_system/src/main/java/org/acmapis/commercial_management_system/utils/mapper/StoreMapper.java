@@ -51,7 +51,7 @@ public interface StoreMapper {
     /**
      * Updates an existing StoreEntity with data from StoreModel, preserving the ID.
      *
-     * @param storeModel the StoreModel containing the updated data
+     * @param storeModel  the StoreModel containing the updated data
      * @param storeEntity the existing StoreEntity to update
      */
     void updateEntityFromModel(StoreModel storeModel, @MappingTarget StoreEntity storeEntity);
