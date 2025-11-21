@@ -166,7 +166,7 @@ public class ProductController {
      * @param limit Maximum number of products to return
      * @return List of top best-selling products
      */
-    @GetMapping("/analytics/top-sellers")
+    @GetMapping("/analytics/top-best-sellers")
     public ResponseEntity<List<ProductModel>> getTopBestSellingProducts(@RequestParam int limit) {
         List<ProductModel> products = productService.getTopBestSellingProducts(limit);
         return ResponseEntity.ok(products);
