@@ -1,9 +1,7 @@
 package org.acmapis.commercial_management_system.service;
 
 import org.acmapis.commercial_management_system.entity.CategoryEntity;
-import org.acmapis.commercial_management_system.entity.ProductEntity;
 import org.acmapis.commercial_management_system.model.dto.CategoryModel;
-import org.acmapis.commercial_management_system.model.dto.ProductModel;
 import org.acmapis.commercial_management_system.repository.CategoryRepository;
 import org.acmapis.commercial_management_system.utils.mapper.CategoryMapper;
 import org.acmapis.commercial_management_system.utils.mapper.ProductMapper;
@@ -47,13 +45,13 @@ public class CategoryService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param categoryRepository the repository for category data access operations
-     * @param categoryMapper the mapper for category entity-model conversions
-     * @param productMapper the mapper for product entity-model conversions
+     * @param categoryMapper     the mapper for category entity-model conversions
+     * @param productMapper      the mapper for product entity-model conversions
      */
     @Autowired
     public CategoryService(CategoryRepository categoryRepository,
-                          CategoryMapper categoryMapper,
-                          ProductMapper productMapper) {
+                           CategoryMapper categoryMapper,
+                           ProductMapper productMapper) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
         this.productMapper = productMapper;
@@ -96,14 +94,14 @@ public class CategoryService {
      * Updates an existing category in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param categoryId The unique identifier of the category to update
+     * @param categoryId    The unique identifier of the category to update
      * @param categoryModel The CategoryModel containing the updated category data
      * @return The updated CategoryModel
      * @throws RuntimeException if the category with the given ID is not found
      */
     public CategoryModel updateCategory(Long categoryId, CategoryModel categoryModel) {
         CategoryEntity existingEntity = categoryRepository.findById(categoryId)
-            .orElseThrow(() -> new RuntimeException("Category not found with ID: " + categoryId));
+                .orElseThrow(() -> new RuntimeException("Category not found with ID: " + categoryId));
 
         categoryMapper.updateEntityFromModel(categoryModel, existingEntity);
 

@@ -27,12 +27,10 @@ import java.util.UUID;
 public class ProductController {
 
     private final ProductService productService;
-    private final SaleProductService saleProductService;
 
     @Autowired
-    public ProductController(ProductService productService, SaleProductService saleProductService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.saleProductService = saleProductService;
     }
 
     /**
@@ -56,7 +54,7 @@ public class ProductController {
     public ResponseEntity<ProductModel> getProductById(@PathVariable UUID id) {
         Optional<ProductModel> product = productService.getProductById(id);
         return product.map(ResponseEntity::ok)
-                     .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -74,14 +72,14 @@ public class ProductController {
     /**
      * Update an existing product.
      *
-     * @param id The product ID to update
+     * @param id      The product ID to update
      * @param product Updated product data
      * @return Updated product
      */
     @PutMapping("/{id}")
     public ResponseEntity<ProductModel> updateProduct(@PathVariable UUID id, @RequestBody ProductModel product) {
         product.setProductId(id);
-        ProductModel updatedProduct = productService.updateProduct(id,product);
+        ProductModel updatedProduct = productService.updateProduct(id, product);
         return ResponseEntity.ok(updatedProduct);
     }
 
@@ -108,7 +106,7 @@ public class ProductController {
      */
     @GetMapping("/search/by-price-range")
     public ResponseEntity<List<ProductModel>> getProductsByPriceRange(
-            @RequestParam Double minPrice, 
+            @RequestParam Double minPrice,
             @RequestParam Double maxPrice) {
         List<ProductModel> products = productService.getProductsByPriceRange(minPrice, maxPrice);
         return ResponseEntity.ok(products);
@@ -152,13 +150,13 @@ public class ProductController {
     // === Sales Analytics Endpoints (from SaleProductService) ===
 
     /**
-     * Get all products ordered by total sales quantity (best sellers first).
+     * Get all products ordered by total sales quantity (bestsellers first).
      *
      * @return List of products ordered by sales performance
      */
     @GetMapping("/analytics/best-sellers")
     public ResponseEntity<List<ProductModel>> getBestSellingProducts() {
-        List<ProductModel> products = saleProductService.getBestSellingProducts();
+        List<ProductModel> products = productService.getBestSellingProducts();
         return ResponseEntity.ok(products);
     }
 
@@ -170,7 +168,7 @@ public class ProductController {
      */
     @GetMapping("/analytics/top-sellers")
     public ResponseEntity<List<ProductModel>> getTopBestSellingProducts(@RequestParam int limit) {
-        List<ProductModel> products = saleProductService.getTopBestSellingProducts(limit);
+        List<ProductModel> products = productService.getTopBestSellingProducts(limit);
         return ResponseEntity.ok(products);
     }
 }

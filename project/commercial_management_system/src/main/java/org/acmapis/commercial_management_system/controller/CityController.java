@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * REST Controller for City management operations.
@@ -52,7 +51,7 @@ public class CityController {
     public ResponseEntity<CityModel> getCityById(@PathVariable Long id) {
         Optional<CityModel> city = cityService.getCityById(id);
         return city.map(ResponseEntity::ok)
-                  .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -70,14 +69,14 @@ public class CityController {
     /**
      * Update an existing city.
      *
-     * @param id The city ID to update
+     * @param id   The city ID to update
      * @param city Updated city data
      * @return Updated city
      */
     @PutMapping("/{id}")
     public ResponseEntity<CityModel> updateCity(@PathVariable Long id, @RequestBody CityModel city) {
         city.setCityId(id);
-        CityModel updatedCity = cityService.updateCity(id,city);
+        CityModel updatedCity = cityService.updateCity(id, city);
         return ResponseEntity.ok(updatedCity);
     }
 

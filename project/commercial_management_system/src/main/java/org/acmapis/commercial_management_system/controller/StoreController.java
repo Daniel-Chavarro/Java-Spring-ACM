@@ -53,7 +53,7 @@ public class StoreController {
     public ResponseEntity<StoreModel> getStoreById(@PathVariable UUID id) {
         Optional<StoreModel> store = storeService.getStoreById(id);
         return store.map(ResponseEntity::ok)
-                   .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -71,14 +71,14 @@ public class StoreController {
     /**
      * Update an existing store.
      *
-     * @param id The store ID to update
+     * @param id    The store ID to update
      * @param store Updated store data
      * @return Updated store
      */
     @PutMapping("/{id}")
     public ResponseEntity<StoreModel> updateStore(@PathVariable UUID id, @RequestBody StoreModel store) {
         store.setStoreId(id);
-        StoreModel updatedStore = storeService.updateStore(id,store);
+        StoreModel updatedStore = storeService.updateStore(id, store);
         return ResponseEntity.ok(updatedStore);
     }
 

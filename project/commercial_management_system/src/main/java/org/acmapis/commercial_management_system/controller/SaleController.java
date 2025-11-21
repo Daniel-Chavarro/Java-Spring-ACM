@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public class SaleController {
     public ResponseEntity<SaleModel> getSaleById(@PathVariable UUID id) {
         Optional<SaleModel> sale = saleService.getSaleById(id);
         return sale.map(ResponseEntity::ok)
-                  .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -72,14 +71,14 @@ public class SaleController {
     /**
      * Update an existing sale.
      *
-     * @param id The sale ID to update
+     * @param id   The sale ID to update
      * @param sale Updated sale data
      * @return Updated sale
      */
     @PutMapping("/{id}")
     public ResponseEntity<SaleModel> updateSale(@PathVariable UUID id, @RequestBody SaleModel sale) {
         sale.setSaleId(id);
-        SaleModel updatedSale = saleService.updateSale(id,sale);
+        SaleModel updatedSale = saleService.updateSale(id, sale);
         return ResponseEntity.ok(updatedSale);
     }
 

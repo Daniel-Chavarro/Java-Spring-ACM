@@ -56,16 +56,16 @@ public class StoreService {
      * Constructs a new StoreService with the required dependencies.
      * Uses constructor-based dependency injection for better testability and immutability.
      *
-     * @param storeRepository the repository for store data access operations
-     * @param storeMapper the mapper for store entity-model conversions
-     * @param productMapper the mapper for product entity-model conversions
+     * @param storeRepository    the repository for store data access operations
+     * @param storeMapper        the mapper for store entity-model conversions
+     * @param productMapper      the mapper for product entity-model conversions
      * @param storeProductMapper the mapper for store-product relationship conversions
      */
     @Autowired
     public StoreService(StoreRepository storeRepository,
-                       StoreMapper storeMapper,
-                       ProductMapper productMapper,
-                       StoreProductMapper storeProductMapper) {
+                        StoreMapper storeMapper,
+                        ProductMapper productMapper,
+                        StoreProductMapper storeProductMapper) {
         this.storeRepository = storeRepository;
         this.storeMapper = storeMapper;
         this.productMapper = productMapper;
@@ -109,14 +109,14 @@ public class StoreService {
      * Updates an existing store in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param storeId The unique identifier of the store to update
+     * @param storeId    The unique identifier of the store to update
      * @param storeModel The StoreModel containing the updated store data
      * @return The updated StoreModel
      * @throws RuntimeException if the store with the given ID is not found
      */
     public StoreModel updateStore(UUID storeId, StoreModel storeModel) {
         StoreEntity existingEntity = storeRepository.findById(storeId)
-            .orElseThrow(() -> new RuntimeException("Store not found with ID: " + storeId));
+                .orElseThrow(() -> new RuntimeException("Store not found with ID: " + storeId));
 
         storeMapper.updateEntityFromModel(storeModel, existingEntity);
 

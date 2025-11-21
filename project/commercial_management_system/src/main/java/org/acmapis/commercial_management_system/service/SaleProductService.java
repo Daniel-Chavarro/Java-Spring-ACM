@@ -47,13 +47,13 @@ public class SaleProductService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param saleProductRepository the repository for sale-product relationship data access
-     * @param saleProductMapper the mapper for sale-product entity-model conversions
-     * @param productMapper the mapper for product entity-model conversions
+     * @param saleProductMapper     the mapper for sale-product entity-model conversions
+     * @param productMapper         the mapper for product entity-model conversions
      */
     @Autowired
     public SaleProductService(SaleProductRepository saleProductRepository,
-                             SaleProductMapper saleProductMapper,
-                             ProductMapper productMapper) {
+                              SaleProductMapper saleProductMapper,
+                              ProductMapper productMapper) {
         this.saleProductRepository = saleProductRepository;
         this.saleProductMapper = saleProductMapper;
         this.productMapper = productMapper;
@@ -96,14 +96,14 @@ public class SaleProductService {
      * Updates an existing sale-product relationship in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param saleProductId The unique identifier of the sale-product relationship to update
+     * @param saleProductId    The unique identifier of the sale-product relationship to update
      * @param saleProductModel The SaleProductModel containing the updated relationship data
      * @return The updated SaleProductModel
      * @throws RuntimeException if the sale-product relationship with the given ID is not found
      */
     public SaleProductModel updateSaleProduct(Long saleProductId, SaleProductModel saleProductModel) {
         SaleProductEntity existingEntity = saleProductRepository.findById(saleProductId)
-            .orElseThrow(() -> new RuntimeException("SaleProduct not found with ID: " + saleProductId));
+                .orElseThrow(() -> new RuntimeException("SaleProduct not found with ID: " + saleProductId));
 
         saleProductMapper.updateEntityFromModel(saleProductModel, existingEntity);
 

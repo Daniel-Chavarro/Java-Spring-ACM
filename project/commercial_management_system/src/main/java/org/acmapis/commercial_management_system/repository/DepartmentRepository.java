@@ -4,9 +4,6 @@ import org.acmapis.commercial_management_system.entity.DepartmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
  * Repository interface for managing DepartmentEntity data access operations.
  * Provides standard CRUD operations for department-related database interactions.

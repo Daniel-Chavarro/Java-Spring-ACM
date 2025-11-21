@@ -38,7 +38,7 @@ public class DepartmentService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param departmentRepository the repository for department data access operations
-     * @param departmentMapper the mapper for department entity-model conversions
+     * @param departmentMapper     the mapper for department entity-model conversions
      */
     @Autowired
     public DepartmentService(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
@@ -83,14 +83,14 @@ public class DepartmentService {
      * Updates an existing department in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param departmentId The unique identifier of the department to update
+     * @param departmentId    The unique identifier of the department to update
      * @param departmentModel The DepartmentModel containing the updated department data
      * @return The updated DepartmentModel
      * @throws RuntimeException if the department with the given ID is not found
      */
     public DepartmentModel updateDepartment(Long departmentId, DepartmentModel departmentModel) {
         DepartmentEntity existingEntity = departmentRepository.findById(departmentId)
-            .orElseThrow(() -> new RuntimeException("Department not found with ID: " + departmentId));
+                .orElseThrow(() -> new RuntimeException("Department not found with ID: " + departmentId));
 
         departmentMapper.updateEntityFromModel(departmentModel, existingEntity);
 

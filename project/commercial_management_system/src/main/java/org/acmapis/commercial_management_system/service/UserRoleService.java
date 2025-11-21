@@ -38,7 +38,7 @@ public class UserRoleService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param userRoleRepository the repository for user role data access operations
-     * @param userRoleMapper the mapper for user role entity-model conversions
+     * @param userRoleMapper     the mapper for user role entity-model conversions
      */
     @Autowired
     public UserRoleService(UserRoleRepository userRoleRepository, UserRoleMapper userRoleMapper) {
@@ -83,14 +83,14 @@ public class UserRoleService {
      * Updates an existing user role in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param userRoleId The unique identifier of the user role to update
+     * @param userRoleId    The unique identifier of the user role to update
      * @param userRoleModel The UserRoleModel containing the updated user role data
      * @return The updated UserRoleModel
      * @throws RuntimeException if the user role with the given ID is not found
      */
     public UserRoleModel updateUserRole(Long userRoleId, UserRoleModel userRoleModel) {
         UserRoleEntity existingEntity = userRoleRepository.findById(userRoleId)
-            .orElseThrow(() -> new RuntimeException("UserRole not found with ID: " + userRoleId));
+                .orElseThrow(() -> new RuntimeException("UserRole not found with ID: " + userRoleId));
 
         userRoleMapper.updateEntityFromModel(userRoleModel, existingEntity);
 
