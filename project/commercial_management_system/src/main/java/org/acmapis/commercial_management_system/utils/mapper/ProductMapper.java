@@ -7,6 +7,13 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
+/**
+ * Mapper interface for Product-related data transformations.
+ *
+ * @author Commercial Management System
+ * @version 1.0
+ * @since 2025-11-20
+ */
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
     /**

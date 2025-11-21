@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * REST Controller for SaleProduct management operations.
  * Provides endpoints for CRUD operations on sale-product relationships.
- * 
+ * <p>
  * Note: Custom query endpoints for analytics are handled by ProductController as requested.
  *
  * @author Commercial Management System Team
@@ -54,7 +53,7 @@ public class SaleProductController {
     public ResponseEntity<SaleProductModel> getSaleProductById(@PathVariable Long id) {
         Optional<SaleProductModel> saleProduct = saleProductService.getSaleProductById(id);
         return saleProduct.map(ResponseEntity::ok)
-                         .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -72,14 +71,14 @@ public class SaleProductController {
     /**
      * Update an existing sale-product relationship.
      *
-     * @param id The sale-product relationship ID to update
+     * @param id          The sale-product relationship ID to update
      * @param saleProduct Updated sale-product data
      * @return Updated sale-product relationship
      */
     @PutMapping("/{id}")
     public ResponseEntity<SaleProductModel> updateSaleProduct(@PathVariable Long id, @RequestBody SaleProductModel saleProduct) {
         saleProduct.setSaleProductId(id);
-        SaleProductModel updatedSaleProduct = saleProductService.updateSaleProduct(id,saleProduct);
+        SaleProductModel updatedSaleProduct = saleProductService.updateSaleProduct(id, saleProduct);
         return ResponseEntity.ok(updatedSaleProduct);
     }
 

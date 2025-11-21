@@ -4,7 +4,6 @@ import org.acmapis.commercial_management_system.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**

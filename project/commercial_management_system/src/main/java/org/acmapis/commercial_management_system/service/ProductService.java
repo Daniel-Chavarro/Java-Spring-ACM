@@ -46,11 +46,11 @@ public class ProductService {
      * Uses constructor-based dependency injection for better testability and immutability.
      *
      * @param productRepository the repository for product data access operations
-     * @param productMapper the mapper for entity-model conversions
+     * @param productMapper     the mapper for entity-model conversions
      */
     @Autowired
     public ProductService(ProductRepository productRepository,
-                          ProductMapper productMapper ,
+                          ProductMapper productMapper,
                           SaleProductService saleProductService) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
@@ -94,14 +94,14 @@ public class ProductService {
      * Updates an existing product in the database.
      * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
-     * @param productId The unique identifier of the product to update
+     * @param productId    The unique identifier of the product to update
      * @param productModel The ProductModel containing the updated product data
      * @return The updated ProductModel
      * @throws RuntimeException if the product with the given ID is not found
      */
     public ProductModel updateProduct(UUID productId, ProductModel productModel) {
         ProductEntity existingEntity = productRepository.findById(productId)
-            .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
 
         productMapper.updateEntityFromModel(productModel, existingEntity);
 
@@ -186,7 +186,8 @@ public class ProductService {
     }
 
 
-    /**Retrieves all products ordered by their total sales quantity in descending order.
+    /**
+     * Retrieves all products ordered by their total sales quantity in descending order.
      *
      * @return List of ProductModel objects ordered by total sales quantity (highest to lowest)
      */
@@ -194,7 +195,8 @@ public class ProductService {
         return saleProductService.getBestSellingProducts();
     }
 
-    /** Retrieves the top N best-selling products based on total sales quantity.
+    /**
+     * Retrieves the top N best-selling products based on total sales quantity.
      *
      * @param limit The maximum number of top best-selling products to retrieve
      * @return List of ProductModel objects representing the top N best-selling products

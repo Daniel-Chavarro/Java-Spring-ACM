@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * REST Controller for UserRole management operations.
@@ -52,7 +51,7 @@ public class UserRoleController {
     public ResponseEntity<UserRoleModel> getUserRoleById(@PathVariable Long id) {
         Optional<UserRoleModel> userRole = userRoleService.getUserRoleById(id);
         return userRole.map(ResponseEntity::ok)
-                      .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -70,14 +69,14 @@ public class UserRoleController {
     /**
      * Update an existing user role.
      *
-     * @param id The user role ID to update
+     * @param id       The user role ID to update
      * @param userRole Updated user role data
      * @return Updated user role
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserRoleModel> updateUserRole(@PathVariable Long id, @RequestBody UserRoleModel userRole) {
         userRole.setUserRoleId(id);
-        UserRoleModel updatedUserRole = userRoleService.updateUserRole(id,userRole);
+        UserRoleModel updatedUserRole = userRoleService.updateUserRole(id, userRole);
         return ResponseEntity.ok(updatedUserRole);
     }
 

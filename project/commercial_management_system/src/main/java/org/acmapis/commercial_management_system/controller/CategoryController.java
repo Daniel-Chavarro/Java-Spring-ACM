@@ -1,7 +1,6 @@
 package org.acmapis.commercial_management_system.controller;
 
 import org.acmapis.commercial_management_system.model.dto.CategoryModel;
-import org.acmapis.commercial_management_system.model.dto.ProductModel;
 import org.acmapis.commercial_management_system.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * REST Controller for Category management operations.
@@ -53,7 +51,7 @@ public class CategoryController {
     public ResponseEntity<CategoryModel> getCategoryById(@PathVariable Long id) {
         Optional<CategoryModel> category = categoryService.getCategoryById(id);
         return category.map(ResponseEntity::ok)
-                      .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -71,14 +69,14 @@ public class CategoryController {
     /**
      * Update an existing category.
      *
-     * @param id The category ID to update
+     * @param id       The category ID to update
      * @param category Updated category data
      * @return Updated category
      */
     @PutMapping("/{id}")
     public ResponseEntity<CategoryModel> updateCategory(@PathVariable Long id, @RequestBody CategoryModel category) {
         category.setCategoryId(id);
-        CategoryModel updatedCategory = categoryService.updateCategory(id,category);
+        CategoryModel updatedCategory = categoryService.updateCategory(id, category);
         return ResponseEntity.ok(updatedCategory);
     }
 
@@ -106,18 +104,6 @@ public class CategoryController {
     public ResponseEntity<CategoryModel> findByCategoryName(@RequestParam String categoryName) {
         Optional<CategoryModel> category = categoryService.getCategoriesByName(categoryName);
         return category.map(ResponseEntity::ok)
-                      .orElse(ResponseEntity.notFound().build());
-    }
-
-    /**
-     * Get all products belonging to a specific category.
-     *
-     * @param id The category ID
-     * @return List of products in the category
-     */
-    @GetMapping("/{id}/products")
-    public ResponseEntity<List<ProductModel>> getProductsByCategoryId(@PathVariable UUID id) {
-        List<ProductModel> products = categoryService.findProductsByCategoryId(id);
-        return ResponseEntity.ok(products);
+                .orElse(ResponseEntity.notFound().build());
     }
 }

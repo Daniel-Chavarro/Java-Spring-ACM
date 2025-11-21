@@ -14,7 +14,7 @@ import java.util.List;
  * @version 1.0
  * @since 2025-11-20
  */
-@Mapper(componentModel = "spring", uses = {ProductMapper.class})
+@Mapper(componentModel = "spring")
 public interface CategoryMapper {
     /**
      * Converts a CategoryEntity to a CategoryModel.

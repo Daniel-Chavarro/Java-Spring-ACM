@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * REST Controller for Department management operations.
@@ -52,7 +51,7 @@ public class DepartmentController {
     public ResponseEntity<DepartmentModel> getDepartmentById(@PathVariable Long id) {
         Optional<DepartmentModel> department = departmentService.getDepartmentById(id);
         return department.map(ResponseEntity::ok)
-                        .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -70,14 +69,14 @@ public class DepartmentController {
     /**
      * Update an existing department.
      *
-     * @param id The department ID to update
+     * @param id         The department ID to update
      * @param department Updated department data
      * @return Updated department
      */
     @PutMapping("/{id}")
     public ResponseEntity<DepartmentModel> updateDepartment(@PathVariable Long id, @RequestBody DepartmentModel department) {
         department.setDepartmentId(id);
-        DepartmentModel updatedDepartment = departmentService.updateDepartment(id,department);
+        DepartmentModel updatedDepartment = departmentService.updateDepartment(id, department);
         return ResponseEntity.ok(updatedDepartment);
     }
 

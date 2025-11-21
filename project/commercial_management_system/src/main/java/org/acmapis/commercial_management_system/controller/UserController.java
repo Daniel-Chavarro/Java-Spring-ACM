@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -53,7 +52,7 @@ public class UserController {
     public ResponseEntity<UserModel> getUserById(@PathVariable UUID id) {
         Optional<UserModel> user = userService.getUserById(id);
         return user.map(ResponseEntity::ok)
-                  .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**
@@ -71,14 +70,14 @@ public class UserController {
     /**
      * Update an existing user.
      *
-     * @param id The user ID to update
+     * @param id   The user ID to update
      * @param user Updated user data
      * @return Updated user
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserModel> updateUser(@PathVariable UUID id, @RequestBody UserModel user) {
         user.setUserId(id);
-        UserModel updatedUser = userService.updateUser(id,user);
+        UserModel updatedUser = userService.updateUser(id, user);
         return ResponseEntity.ok(updatedUser);
     }
 
