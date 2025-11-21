@@ -133,14 +133,4 @@ public class CategoryService {
         return categoryMapper.toModelList(entities);
     }
 
-    /**
-     * Retrieves all products that belong to a specific category.
-     *
-     * @param categoryId The unique identifier of the category
-     * @return List of ProductModel objects associated with the specified category
-     */
-    public List<ProductModel> getProductsByCategoryId(Long categoryId) {
-        List<ProductEntity> entities = categoryRepository.findProductsByCategoryId(categoryId);
-        return productMapper.toModelList(entities);
-    }
 }

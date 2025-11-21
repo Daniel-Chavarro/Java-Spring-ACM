@@ -153,4 +153,26 @@ public class ProductService {
         List<ProductEntity> entities = productRepository.findByCreatedAtAfter(createdAfter);
         return productMapper.toModelList(entities);
     }
+
+    /**
+     * Retrieves all products that belong to a specific category by category name.
+     *
+     * @param categoryName The unique name of the category
+     * @return List of ProductModel objects associated with the specified category
+     */
+    public List<ProductModel> getProductsByCategoryName(String categoryName) {
+        List<ProductEntity> entities = productRepository.findByCategoryName(categoryName);
+        return productMapper.toModelList(entities);
+    }
+
+    /**
+     * Retrieves all products that belong to a specific category by category ID.
+     *
+     * @param categoryId The unique identifier of the category
+     * @return List of ProductModel objects associated with the specified category
+     */
+    public List<ProductModel> getProductsByCategoryId(Long categoryId) {
+        List<ProductEntity> entities = productRepository.findByCategoryId(categoryId);
+        return productMapper.toModelList(entities);
+    }
 }
