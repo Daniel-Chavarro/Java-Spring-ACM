@@ -21,17 +21,24 @@ import java.util.Optional;
 @Service
 public class CityService {
 
-    /** Repository for CityEntity operations. */
+    /**
+     * Repository interface for accessing city data in the database.
+     * Provides CRUD operations for city entities.
+     */
     private final CityRepository cityRepository;
 
-    /** Mapper for converting between CityEntity and CityModel. */
+    /**
+     * Mapper interface for converting between CityEntity and CityModel objects.
+     * Handles automatic mapping using MapStruct framework.
+     */
     private final CityMapper cityMapper;
 
     /**
-     * Constructor for CityService with dependency injection.
+     * Constructs a new CityService with the required dependencies.
+     * Uses constructor-based dependency injection for better testability and immutability.
      *
-     * @param cityRepository Repository for CityEntity operations
-     * @param cityMapper    Mapper for CityEntity and CityModel
+     * @param cityRepository the repository for city data access operations
+     * @param cityMapper the mapper for city entity-model conversions
      */
     @Autowired
     public CityService(CityRepository cityRepository, CityMapper cityMapper) {
@@ -74,13 +81,20 @@ public class CityService {
 
     /**
      * Updates an existing city in the database.
+     * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
+     * @param cityId The unique identifier of the city to update
      * @param cityModel The CityModel containing the updated city data
      * @return The updated CityModel
+     * @throws RuntimeException if the city with the given ID is not found
      */
-    public CityModel updateCity(CityModel cityModel) {
-        CityEntity entity = cityMapper.toEntity(cityModel);
-        CityEntity updatedEntity = cityRepository.save(entity);
+    public CityModel updateCity(Long cityId, CityModel cityModel) {
+        CityEntity existingEntity = cityRepository.findById(cityId)
+            .orElseThrow(() -> new RuntimeException("City not found with ID: " + cityId));
+
+        cityMapper.updateEntityFromModel(cityModel, existingEntity);
+
+        CityEntity updatedEntity = cityRepository.save(existingEntity);
         return cityMapper.toModel(updatedEntity);
     }
 

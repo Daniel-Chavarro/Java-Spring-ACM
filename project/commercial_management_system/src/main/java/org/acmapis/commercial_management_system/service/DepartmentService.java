@@ -21,16 +21,24 @@ import java.util.Optional;
 @Service
 public class DepartmentService {
 
-    /** Repository for DepartmentEntity operations. */
+    /**
+     * Repository interface for accessing department data in the database.
+     * Provides CRUD operations for department entities.
+     */
     private final DepartmentRepository departmentRepository;
-    /** Mapper for converting between DepartmentEntity and DepartmentModel. */
+
+    /**
+     * Mapper interface for converting between DepartmentEntity and DepartmentModel objects.
+     * Handles automatic mapping using MapStruct framework.
+     */
     private final DepartmentMapper departmentMapper;
 
     /**
-     * Constructor for DepartmentService with dependency injection.
+     * Constructs a new DepartmentService with the required dependencies.
+     * Uses constructor-based dependency injection for better testability and immutability.
      *
-     * @param departmentRepository Repository for DepartmentEntity operations
-     * @param departmentMapper    Mapper for DepartmentEntity and DepartmentModel
+     * @param departmentRepository the repository for department data access operations
+     * @param departmentMapper the mapper for department entity-model conversions
      */
     @Autowired
     public DepartmentService(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
@@ -73,13 +81,20 @@ public class DepartmentService {
 
     /**
      * Updates an existing department in the database.
+     * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
+     * @param departmentId The unique identifier of the department to update
      * @param departmentModel The DepartmentModel containing the updated department data
      * @return The updated DepartmentModel
+     * @throws RuntimeException if the department with the given ID is not found
      */
-    public DepartmentModel updateDepartment(DepartmentModel departmentModel) {
-        DepartmentEntity entity = departmentMapper.toEntity(departmentModel);
-        DepartmentEntity updatedEntity = departmentRepository.save(entity);
+    public DepartmentModel updateDepartment(Long departmentId, DepartmentModel departmentModel) {
+        DepartmentEntity existingEntity = departmentRepository.findById(departmentId)
+            .orElseThrow(() -> new RuntimeException("Department not found with ID: " + departmentId));
+
+        departmentMapper.updateEntityFromModel(departmentModel, existingEntity);
+
+        DepartmentEntity updatedEntity = departmentRepository.save(existingEntity);
         return departmentMapper.toModel(updatedEntity);
     }
 

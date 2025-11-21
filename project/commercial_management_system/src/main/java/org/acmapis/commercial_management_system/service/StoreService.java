@@ -28,11 +28,39 @@ import java.util.UUID;
 @Service
 public class StoreService {
 
+    /**
+     * Repository interface for accessing store data in the database.
+     * Provides CRUD operations and inventory management queries for store entities.
+     */
     private final StoreRepository storeRepository;
+
+    /**
+     * Mapper interface for converting between StoreEntity and StoreModel objects.
+     * Handles automatic mapping using MapStruct framework.
+     */
     private final StoreMapper storeMapper;
+
+    /**
+     * Mapper interface for converting between ProductEntity and ProductModel objects.
+     * Used for mapping product data in inventory operations.
+     */
     private final ProductMapper productMapper;
+
+    /**
+     * Mapper interface for converting between StoreProductEntity and StoreProductModel objects.
+     * Used for mapping store-product relationship data in inventory management.
+     */
     private final StoreProductMapper storeProductMapper;
 
+    /**
+     * Constructs a new StoreService with the required dependencies.
+     * Uses constructor-based dependency injection for better testability and immutability.
+     *
+     * @param storeRepository the repository for store data access operations
+     * @param storeMapper the mapper for store entity-model conversions
+     * @param productMapper the mapper for product entity-model conversions
+     * @param storeProductMapper the mapper for store-product relationship conversions
+     */
     @Autowired
     public StoreService(StoreRepository storeRepository,
                        StoreMapper storeMapper,
@@ -79,13 +107,20 @@ public class StoreService {
 
     /**
      * Updates an existing store in the database.
+     * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
+     * @param storeId The unique identifier of the store to update
      * @param storeModel The StoreModel containing the updated store data
      * @return The updated StoreModel
+     * @throws RuntimeException if the store with the given ID is not found
      */
-    public StoreModel updateStore(StoreModel storeModel) {
-        StoreEntity entity = storeMapper.toEntity(storeModel);
-        StoreEntity updatedEntity = storeRepository.save(entity);
+    public StoreModel updateStore(UUID storeId, StoreModel storeModel) {
+        StoreEntity existingEntity = storeRepository.findById(storeId)
+            .orElseThrow(() -> new RuntimeException("Store not found with ID: " + storeId));
+
+        storeMapper.updateEntityFromModel(storeModel, existingEntity);
+
+        StoreEntity updatedEntity = storeRepository.save(existingEntity);
         return storeMapper.toModel(updatedEntity);
     }
 

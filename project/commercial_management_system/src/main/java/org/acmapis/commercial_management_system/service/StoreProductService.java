@@ -21,9 +21,25 @@ import java.util.Optional;
 @Service
 public class StoreProductService {
 
+    /**
+     * Repository interface for accessing store-product relationship data in the database.
+     * Provides CRUD operations for managing inventory relationships between stores and products.
+     */
     private final StoreProductRepository storeProductRepository;
+
+    /**
+     * Mapper interface for converting between StoreProductEntity and StoreProductModel objects.
+     * Handles automatic mapping using MapStruct framework.
+     */
     private final StoreProductMapper storeProductMapper;
 
+    /**
+     * Constructs a new StoreProductService with the required dependencies.
+     * Uses constructor-based dependency injection for better testability and immutability.
+     *
+     * @param storeProductRepository the repository for store-product relationship data access
+     * @param storeProductMapper the mapper for store-product entity-model conversions
+     */
     @Autowired
     public StoreProductService(StoreProductRepository storeProductRepository,
                               StoreProductMapper storeProductMapper) {
@@ -66,13 +82,20 @@ public class StoreProductService {
 
     /**
      * Updates an existing store-product relationship in the database.
+     * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
+     * @param storeProductId The unique identifier of the store-product relationship to update
      * @param storeProductModel The StoreProductModel containing the updated relationship data
      * @return The updated StoreProductModel
+     * @throws RuntimeException if the store-product relationship with the given ID is not found
      */
-    public StoreProductModel updateStoreProduct(StoreProductModel storeProductModel) {
-        StoreProductEntity entity = storeProductMapper.toEntity(storeProductModel);
-        StoreProductEntity updatedEntity = storeProductRepository.save(entity);
+    public StoreProductModel updateStoreProduct(Long storeProductId, StoreProductModel storeProductModel) {
+        StoreProductEntity existingEntity = storeProductRepository.findById(storeProductId)
+            .orElseThrow(() -> new RuntimeException("StoreProduct not found with ID: " + storeProductId));
+
+        storeProductMapper.updateEntityFromModel(storeProductModel, existingEntity);
+
+        StoreProductEntity updatedEntity = storeProductRepository.save(existingEntity);
         return storeProductMapper.toModel(updatedEntity);
     }
 

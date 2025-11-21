@@ -25,22 +25,30 @@ import java.util.Optional;
 public class CategoryService {
 
     /**
-     * Repository for CategoryEntity operations.
+     * Repository interface for accessing category data in the database.
+     * Provides CRUD operations and custom queries for category entities.
      */
     private final CategoryRepository categoryRepository;
 
-    /** Mapper for converting between CategoryEntity and CategoryModel. */
+    /**
+     * Mapper interface for converting between CategoryEntity and CategoryModel objects.
+     * Handles automatic mapping using MapStruct framework.
+     */
     private final CategoryMapper categoryMapper;
 
-    /** Mapper for converting between ProductEntity and ProductModel. */
+    /**
+     * Mapper interface for converting between ProductEntity and ProductModel objects.
+     * Used for mapping product data in category-product relationship operations.
+     */
     private final ProductMapper productMapper;
 
     /**
-     * Constructor for CategoryService with dependency injection.
+     * Constructs a new CategoryService with the required dependencies.
+     * Uses constructor-based dependency injection for better testability and immutability.
      *
-     * @param categoryRepository Repository for CategoryEntity operations
-     * @param categoryMapper    Mapper for CategoryEntity and CategoryModel
-     * @param productMapper     Mapper for ProductEntity and ProductModel
+     * @param categoryRepository the repository for category data access operations
+     * @param categoryMapper the mapper for category entity-model conversions
+     * @param productMapper the mapper for product entity-model conversions
      */
     @Autowired
     public CategoryService(CategoryRepository categoryRepository,
@@ -86,13 +94,20 @@ public class CategoryService {
 
     /**
      * Updates an existing category in the database.
+     * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
+     * @param categoryId The unique identifier of the category to update
      * @param categoryModel The CategoryModel containing the updated category data
      * @return The updated CategoryModel
+     * @throws RuntimeException if the category with the given ID is not found
      */
-    public CategoryModel updateCategory(CategoryModel categoryModel) {
-        CategoryEntity entity = categoryMapper.toEntity(categoryModel);
-        CategoryEntity updatedEntity = categoryRepository.save(entity);
+    public CategoryModel updateCategory(Long categoryId, CategoryModel categoryModel) {
+        CategoryEntity existingEntity = categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new RuntimeException("Category not found with ID: " + categoryId));
+
+        categoryMapper.updateEntityFromModel(categoryModel, existingEntity);
+
+        CategoryEntity updatedEntity = categoryRepository.save(existingEntity);
         return categoryMapper.toModel(updatedEntity);
     }
 

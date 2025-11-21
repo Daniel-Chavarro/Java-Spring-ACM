@@ -21,9 +21,25 @@ import java.util.Optional;
 @Service
 public class UserRoleService {
 
+    /**
+     * Repository interface for accessing user role data in the database.
+     * Provides CRUD operations for user role entities.
+     */
     private final UserRoleRepository userRoleRepository;
+
+    /**
+     * Mapper interface for converting between UserRoleEntity and UserRoleModel objects.
+     * Handles automatic mapping using MapStruct framework.
+     */
     private final UserRoleMapper userRoleMapper;
 
+    /**
+     * Constructs a new UserRoleService with the required dependencies.
+     * Uses constructor-based dependency injection for better testability and immutability.
+     *
+     * @param userRoleRepository the repository for user role data access operations
+     * @param userRoleMapper the mapper for user role entity-model conversions
+     */
     @Autowired
     public UserRoleService(UserRoleRepository userRoleRepository, UserRoleMapper userRoleMapper) {
         this.userRoleRepository = userRoleRepository;
@@ -65,13 +81,20 @@ public class UserRoleService {
 
     /**
      * Updates an existing user role in the database.
+     * Uses the find-modify-save pattern to ensure data integrity and prevent ID conflicts.
      *
+     * @param userRoleId The unique identifier of the user role to update
      * @param userRoleModel The UserRoleModel containing the updated user role data
      * @return The updated UserRoleModel
+     * @throws RuntimeException if the user role with the given ID is not found
      */
-    public UserRoleModel updateUserRole(UserRoleModel userRoleModel) {
-        UserRoleEntity entity = userRoleMapper.toEntity(userRoleModel);
-        UserRoleEntity updatedEntity = userRoleRepository.save(entity);
+    public UserRoleModel updateUserRole(Long userRoleId, UserRoleModel userRoleModel) {
+        UserRoleEntity existingEntity = userRoleRepository.findById(userRoleId)
+            .orElseThrow(() -> new RuntimeException("UserRole not found with ID: " + userRoleId));
+
+        userRoleMapper.updateEntityFromModel(userRoleModel, existingEntity);
+
+        UserRoleEntity updatedEntity = userRoleRepository.save(existingEntity);
         return userRoleMapper.toModel(updatedEntity);
     }
 
