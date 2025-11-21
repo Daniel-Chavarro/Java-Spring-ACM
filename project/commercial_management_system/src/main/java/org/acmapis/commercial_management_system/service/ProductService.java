@@ -36,6 +36,12 @@ public class ProductService {
     private final ProductMapper productMapper;
 
     /**
+     * Service for managing sale-product relationships.
+     * Used for analytics and relationship management operations.
+     */
+    private final SaleProductService saleProductService;
+
+    /**
      * Constructs a new ProductService with the required dependencies.
      * Uses constructor-based dependency injection for better testability and immutability.
      *
@@ -43,9 +49,12 @@ public class ProductService {
      * @param productMapper the mapper for entity-model conversions
      */
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductService(ProductRepository productRepository,
+                          ProductMapper productMapper ,
+                          SaleProductService saleProductService) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.saleProductService = saleProductService;
     }
 
     /**
@@ -174,5 +183,23 @@ public class ProductService {
     public List<ProductModel> getProductsByCategoryId(Long categoryId) {
         List<ProductEntity> entities = productRepository.findByCategoryId(categoryId);
         return productMapper.toModelList(entities);
+    }
+
+
+    /**Retrieves all products ordered by their total sales quantity in descending order.
+     *
+     * @return List of ProductModel objects ordered by total sales quantity (highest to lowest)
+     */
+    public List<ProductModel> getBestSellingProducts() {
+        return saleProductService.getBestSellingProducts();
+    }
+
+    /** Retrieves the top N best-selling products based on total sales quantity.
+     *
+     * @param limit The maximum number of top best-selling products to retrieve
+     * @return List of ProductModel objects representing the top N best-selling products
+     */
+    public List<ProductModel> getTopBestSellingProducts(int limit) {
+        return saleProductService.getTopBestSellingProducts(limit);
     }
 }
