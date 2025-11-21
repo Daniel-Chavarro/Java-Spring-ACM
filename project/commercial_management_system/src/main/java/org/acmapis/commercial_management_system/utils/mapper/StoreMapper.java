@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.StoreEntity;
 import org.acmapis.commercial_management_system.model.dto.StoreModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -46,4 +47,12 @@ public interface StoreMapper {
      * @return the corresponding list of StoreEntity
      */
     List<StoreEntity> toEntityList(List<StoreModel> storeModels);
+
+    /**
+     * Updates an existing StoreEntity with data from StoreModel, preserving the ID.
+     *
+     * @param storeModel the StoreModel containing the updated data
+     * @param storeEntity the existing StoreEntity to update
+     */
+    void updateEntityFromModel(StoreModel storeModel, @MappingTarget StoreEntity storeEntity);
 }

@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.DepartmentEntity;
 import org.acmapis.commercial_management_system.model.dto.DepartmentModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -39,4 +40,12 @@ public interface DepartmentMapper {
      * @return the corresponding list of DepartmentEntity
      */
     List<DepartmentEntity> toEntityList(List<DepartmentModel> departmentModels);
+
+    /**
+     * Updates an existing DepartmentEntity with data from DepartmentModel, preserving the ID.
+     *
+     * @param departmentModel the DepartmentModel containing the updated data
+     * @param departmentEntity the existing DepartmentEntity to update
+     */
+    void updateEntityFromModel(DepartmentModel departmentModel, @MappingTarget DepartmentEntity departmentEntity);
 }

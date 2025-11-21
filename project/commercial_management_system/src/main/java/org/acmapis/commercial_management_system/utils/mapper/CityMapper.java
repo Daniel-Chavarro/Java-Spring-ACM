@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.CityEntity;
 import org.acmapis.commercial_management_system.model.dto.CityModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -46,4 +47,12 @@ public interface CityMapper {
      * @return the corresponding list of CityEntity
      */
     List<CityEntity> toEntityList(List<CityModel> cityModels);
+
+    /**
+     * Updates an existing CityEntity with data from CityModel, preserving the ID.
+     *
+     * @param cityModel the CityModel containing the updated data
+     * @param cityEntity the existing CityEntity to update
+     */
+    void updateEntityFromModel(CityModel cityModel, @MappingTarget CityEntity cityEntity);
 }

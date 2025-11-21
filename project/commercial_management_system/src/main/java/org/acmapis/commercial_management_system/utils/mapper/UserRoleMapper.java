@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.UserRoleEntity;
 import org.acmapis.commercial_management_system.model.dto.UserRoleModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -46,6 +47,14 @@ public interface UserRoleMapper {
      * @return the corresponding list of UserRoleEntity
      */
     List<UserRoleEntity> toEntityList(List<UserRoleModel> userRoleModels);
+
+    /**
+     * Updates an existing UserRoleEntity with data from UserRoleModel, preserving the ID.
+     *
+     * @param userRoleModel the UserRoleModel containing the updated data
+     * @param userRoleEntity the existing UserRoleEntity to update
+     */
+    void updateEntityFromModel(UserRoleModel userRoleModel, @MappingTarget UserRoleEntity userRoleEntity);
 }
 
 

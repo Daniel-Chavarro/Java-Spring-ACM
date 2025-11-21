@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.UserEntity;
 import org.acmapis.commercial_management_system.model.dto.UserModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -46,4 +47,12 @@ public interface UserMapper {
      * @return the corresponding list of UserEntity
      */
     List<UserEntity> toEntityList(List<UserModel> userModels);
+
+    /**
+     * Updates an existing UserEntity with data from UserModel, preserving the ID.
+     *
+     * @param userModel the UserModel containing the updated data
+     * @param userEntity the existing UserEntity to update
+     */
+    void updateEntityFromModel(UserModel userModel, @MappingTarget UserEntity userEntity);
 }

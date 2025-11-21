@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.CategoryEntity;
 import org.acmapis.commercial_management_system.model.dto.CategoryModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -46,4 +47,12 @@ public interface CategoryMapper{
      * @return the corresponding list of CategoryEntity
      */
     List<CategoryEntity> toEntityList(List<CategoryModel> categoryModels);
+
+    /**
+     * Updates an existing CategoryEntity with data from CategoryModel, preserving the ID.
+     *
+     * @param categoryModel the CategoryModel containing the updated data
+     * @param categoryEntity the existing CategoryEntity to update
+     */
+    void updateEntityFromModel(CategoryModel categoryModel, @MappingTarget CategoryEntity categoryEntity);
 }

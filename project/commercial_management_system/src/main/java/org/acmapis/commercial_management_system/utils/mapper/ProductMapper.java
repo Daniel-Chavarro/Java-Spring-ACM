@@ -3,6 +3,7 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.ProductEntity;
 import org.acmapis.commercial_management_system.model.dto.ProductModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -39,4 +40,12 @@ public interface ProductMapper{
      * @return the corresponding list of ProductEntity
      */
     List<ProductEntity> toEntityList(List<ProductModel> productModels);
+
+    /**
+     * Updates an existing ProductEntity with data from ProductModel, preserving the ID.
+     *
+     * @param productModel the ProductModel containing the updated data
+     * @param productEntity the existing ProductEntity to update
+     */
+    void updateEntityFromModel(ProductModel productModel, @MappingTarget ProductEntity productEntity);
 }
