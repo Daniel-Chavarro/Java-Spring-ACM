@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+
+import java.util.Optional;
 
 /**
  * Repository interface for managing CategoryEntity data access operations.
@@ -24,5 +25,5 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
      * @param categoryName The name of the category to search for
      * @return List of CategoryEntity objects matching the specified name
      */
-    List<CategoryEntity> findByCategoryName(String categoryName);
+    Optional<CategoryEntity> findByCategoryName(String categoryName);
 }

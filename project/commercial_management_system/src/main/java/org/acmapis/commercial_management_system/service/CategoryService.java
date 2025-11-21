@@ -128,9 +128,9 @@ public class CategoryService {
      * @param categoryName The name of the category to search for
      * @return List of CategoryModel objects matching the specified name
      */
-    public List<CategoryModel> getCategoriesByName(String categoryName) {
-        List<CategoryEntity> entities = categoryRepository.findByCategoryName(categoryName);
-        return categoryMapper.toModelList(entities);
+    public Optional<CategoryModel> getCategoriesByName(String categoryName) {
+        Optional<CategoryEntity> entity = categoryRepository.findByCategoryName(categoryName);
+        return entity.map(categoryMapper::toModel);
     }
 
 }
