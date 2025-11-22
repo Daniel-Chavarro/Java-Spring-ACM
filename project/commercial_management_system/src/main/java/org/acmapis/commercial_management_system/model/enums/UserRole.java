@@ -25,7 +25,7 @@ public enum UserRole {
     /**
      * Manager role with moderate permissions for managing operations
      */
-    MANAGER("MODERATOR");
+    MANAGER("MANAGER");
 
     /**
      * The string representation of the role name.

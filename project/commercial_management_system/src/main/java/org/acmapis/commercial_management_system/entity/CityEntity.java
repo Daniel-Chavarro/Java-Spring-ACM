@@ -8,7 +8,8 @@ import lombok.Setter;
 
 /**
  * Entity representing a city in the commercial management system.
- * Cities belong to departments and are used for geographic organization of users and stores.
+ * Cities belong to departments and are used for geographic organization of
+ * users and stores.
  *
  * @author Commercial Management System
  * @version 1.0
@@ -41,7 +42,7 @@ public class CityEntity {
      * Department to which this city belongs.
      * Represents a many-to-one relationship with the department entity.
      */
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "department_id_fk", nullable = false)
     private DepartmentEntity department;
 }

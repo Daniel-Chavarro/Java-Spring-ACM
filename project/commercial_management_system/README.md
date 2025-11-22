@@ -647,18 +647,19 @@ public class StoreController {
 
 ### **4. Products Controller** (`/api/v1/products`)
 
-| Método | Endpoint | Descripción | Respuesta |
-|--------|----------|-------------|----------|
-| `GET` | `/api/v1/products` | Obtener todos los productos | `200 OK` |
-| `GET` | `/api/v1/products/{id}` | Obtener producto por ID | `200 OK` / `404 Not Found` |
-| `POST` | `/api/v1/products` | Crear nuevo producto | `201 Created` |
-| `PUT` | `/api/v1/products/{id}` | Actualizar producto | `200 OK` |
-| `DELETE` | `/api/v1/products/{id}` | Eliminar producto | `204 No Content` |
-| `GET` | `/api/v1/products/search/by-price-range?minPrice=...&maxPrice=...` | Buscar por rango de precio | `200 OK` |
-| `GET` | `/api/v1/products/search/sorted-by-price-asc` | Obtener productos ordenados por precio (ascendente) | `200 OK` |
-| `GET` | `/api/v1/products/search/sorted-by-price-desc` | Obtener productos ordenados por precio (descendente) | `200 OK` |
-| `GET` | `/api/v1/products/search/recent?date=...` | Obtener productos creados después de una fecha | `200 OK` |
-
+| Método   | Endpoint                                                           | Descripción                                          | Respuesta                  |
+|----------|--------------------------------------------------------------------|------------------------------------------------------|----------------------------|
+| `GET`    | `/api/v1/products`                                                 | Obtener todos los productos                          | `200 OK`                   |
+| `GET`    | `/api/v1/products/{id}`                                            | Obtener producto por ID                              | `200 OK` / `404 Not Found` |
+| `POST`   | `/api/v1/products`                                                 | Crear nuevo producto                                 | `201 Created`              |
+| `PUT`    | `/api/v1/products/{id}`                                            | Actualizar producto                                  | `200 OK`                   |
+| `DELETE` | `/api/v1/products/{id}`                                            | Eliminar producto                                    | `204 No Content`           |
+| `GET`    | `/api/v1/products/search/by-price-range?minPrice=...&maxPrice=...` | Buscar por rango de precio                           | `200 OK`                   |
+| `GET`    | `/api/v1/products/search/sorted-by-price-asc`                      | Obtener productos ordenados por precio (ascendente)  | `200 OK`                   |
+| `GET`    | `/api/v1/products/search/sorted-by-price-desc`                     | Obtener productos ordenados por precio (descendente) | `200 OK`                   |
+| `GET`    | `/api/v1/products/search/recent?date=...`                          | Obtener productos creados después de una fecha       | `200 OK`                   |
+| `GET`    | `/api/v1/products/analytics/best-sellers`                          | Obtener productos más vendidos                       | `200 OK`                   |
+| `GET`    | `/api/v1/products/analytics/top-best-sellers?limit=...`            | Obtener top n productos más vendidos                 | `200 OK`                   |
 **Ejemplo de Request POST:**
 ```json
 {

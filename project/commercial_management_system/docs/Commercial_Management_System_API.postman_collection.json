@@ -1,0 +1,1352 @@
+{
+	"info": {
+		"_postman_id": "commercial-mgmt-api-2025",
+		"name": "Commercial Management System API",
+		"description": "Colección completa de endpoints para el Sistema de Gestión Comercial.\n\n**Base URL:** http://localhost:8080/api/v1\n\n**Autor:** Commercial Management System Team\n**Versión:** 1.0\n**Fecha:** 2025-11-22\n\n## Características:\n- ✅ CRUD completo para todas las entidades\n- ✅ Endpoints de búsqueda y consultas especializadas\n- ✅ Ejemplos de peticiones con datos reales\n- ✅ Variables de entorno configurables\n- ✅ Organizado por controladores\n\n## Variables necesarias:\n- `base_url`: http://localhost:8080/api/v1\n- `department_id`: ID de departamento de ejemplo\n- `city_id`: ID de ciudad de ejemplo\n- `user_id`: UUID de usuario de ejemplo\n- `product_id`: UUID de producto de ejemplo\n- `store_id`: UUID de tienda de ejemplo\n- `sale_id`: UUID de venta de ejemplo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Departments",
+			"item": [
+				{
+					"name": "Get All Departments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/departments",
+							"host": ["{{base_url}}"],
+							"path": ["departments"]
+						},
+						"description": "Obtiene todos los departamentos del sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Department by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/departments/1",
+							"host": ["{{base_url}}"],
+							"path": ["departments", "1"]
+						},
+						"description": "Obtiene un departamento específico por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"departmentName\": \"Risaralda\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/departments",
+							"host": ["{{base_url}}"],
+							"path": ["departments"]
+						},
+						"description": "Crea un nuevo departamento."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Department",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"departmentName\": \"Risaralda Actualizado\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/departments/1",
+							"host": ["{{base_url}}"],
+							"path": ["departments", "1"]
+						},
+						"description": "Actualiza un departamento existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Department",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/departments/1",
+							"host": ["{{base_url}}"],
+							"path": ["departments", "1"]
+						},
+						"description": "Elimina un departamento por su ID."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de departamentos (estados/provincias)."
+		},
+		{
+			"name": "2. Cities",
+			"item": [
+				{
+					"name": "Get All Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities",
+							"host": ["{{base_url}}"],
+							"path": ["cities"]
+						},
+						"description": "Obtiene todas las ciudades del sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "Get City by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/1",
+							"host": ["{{base_url}}"],
+							"path": ["cities", "1"]
+						},
+						"description": "Obtiene una ciudad específica por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create City",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cityName\": \"Pereira\",\n  \"department\": {\n    \"departmentId\": 1,\n    \"departmentName\": \"Antioquia\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cities",
+							"host": ["{{base_url}}"],
+							"path": ["cities"]
+						},
+						"description": "Crea una nueva ciudad."
+					},
+					"response": []
+				},
+				{
+					"name": "Update City",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cityName\": \"Pereira Actualizado\",\n  \"department\": {\n    \"departmentId\": 1,\n    \"departmentName\": \"Antioquia\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cities/1",
+							"host": ["{{base_url}}"],
+							"path": ["cities", "1"]
+						},
+						"description": "Actualiza una ciudad existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete City",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/1",
+							"host": ["{{base_url}}"],
+							"path": ["cities", "1"]
+						},
+						"description": "Elimina una ciudad por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cities by Department",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/search/by-department?departmentId=1",
+							"host": ["{{base_url}}"],
+							"path": ["cities", "search", "by-department"],
+							"query": [
+								{
+									"key": "departmentId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca ciudades por ID de departamento."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de ciudades."
+		},
+		{
+			"name": "3. User Roles",
+			"item": [
+				{
+					"name": "Get All User Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user-roles",
+							"host": ["{{base_url}}"],
+							"path": ["user-roles"]
+						},
+						"description": "Obtiene todos los roles de usuario."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Role by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user-roles/1",
+							"host": ["{{base_url}}"],
+							"path": ["user-roles", "1"]
+						},
+						"description": "Obtiene un rol de usuario por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"role\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user-roles",
+							"host": ["{{base_url}}"],
+							"path": ["user-roles"]
+						},
+						"description": "Crea un nuevo rol de usuario. Valores: ADMIN, USER, MANAGER"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"role\": \"MANAGER\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user-roles/1",
+							"host": ["{{base_url}}"],
+							"path": ["user-roles", "1"]
+						},
+						"description": "Actualiza un rol de usuario."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user-roles/1",
+							"host": ["{{base_url}}"],
+							"path": ["user-roles", "1"]
+						},
+						"description": "Elimina un rol de usuario."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de roles de usuario (ADMIN, USER, MANAGER)."
+		},
+		{
+			"name": "4. Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": ["{{base_url}}"],
+							"path": ["users"]
+						},
+						"description": "Obtiene todos los usuarios del sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}"]
+						},
+						"description": "Obtiene un usuario por su UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Usuario\",\n  \"username\": \"testusuario\",\n  \"email\": \"test@example.com\",\n  \"password\": \"$2a$10$encrypted.password.hash\",\n  \"phone\": \"3001234567\",\n  \"role\": {\n    \"userRoleId\": 2,\n    \"role\": \"USER\"\n  },\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": ["{{base_url}}"],
+							"path": ["users"]
+						},
+						"description": "Crea un nuevo usuario."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Test Actualizado\",\n  \"lastName\": \"Usuario\",\n  \"username\": \"testusuario\",\n  \"email\": \"test@example.com\",\n  \"password\": \"$2a$10$encrypted.password.hash\",\n  \"phone\": \"3009876543\",\n  \"role\": {\n    \"userRoleId\": 2,\n    \"role\": \"USER\"\n  },\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}"]
+						},
+						"description": "Actualiza un usuario existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}"]
+						},
+						"description": "Elimina un usuario por su UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Users by Last Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/search/by-lastname?lastName=García",
+							"host": ["{{base_url}}"],
+							"path": ["users", "search", "by-lastname"],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "García"
+								}
+							]
+						},
+						"description": "Busca usuarios por apellido (case-insensitive)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users by City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/search/by-city?cityId=1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "search", "by-city"],
+							"query": [
+								{
+									"key": "cityId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Obtiene usuarios por ID de ciudad."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de usuarios."
+		},
+		{
+			"name": "5. Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": ["{{base_url}}"],
+							"path": ["categories"]
+						},
+						"description": "Obtiene todas las categorías de productos."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "1"]
+						},
+						"description": "Obtiene una categoría por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"categoryName\": \"Mascotas\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": ["{{base_url}}"],
+							"path": ["categories"]
+						},
+						"description": "Crea una nueva categoría."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"categoryName\": \"Mascotas y Accesorios\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "1"]
+						},
+						"description": "Actualiza una categoría existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "1"]
+						},
+						"description": "Elimina una categoría."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de categorías de productos."
+		},
+		{
+			"name": "6. Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": ["{{base_url}}"],
+							"path": ["products"]
+						},
+						"description": "Obtiene todos los productos del sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["products", "{{product_id}}"]
+						},
+						"description": "Obtiene un producto por su UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productName\": \"iPhone 15 Pro\",\n  \"productDescription\": \"Smartphone Apple con chip A17 Pro\",\n  \"price\": 4999000.0,\n  \"categories\": [\n    {\n      \"categoryId\": 1,\n      \"categoryName\": \"Electrónica\"\n    },\n    {\n      \"categoryId\": 10,\n      \"categoryName\": \"Tecnología\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": ["{{base_url}}"],
+							"path": ["products"]
+						},
+						"description": "Crea un nuevo producto."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productName\": \"iPhone 15 Pro Max\",\n  \"productDescription\": \"Smartphone Apple con chip A17 Pro y pantalla de 6.7 pulgadas\",\n  \"price\": 5499000.0,\n  \"categories\": [\n    {\n      \"categoryId\": 1,\n      \"categoryName\": \"Electrónica\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["products", "{{product_id}}"]
+						},
+						"description": "Actualiza un producto existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["products", "{{product_id}}"]
+						},
+						"description": "Elimina un producto."
+					},
+					"response": []
+				},
+				{
+					"name": "Search by Price Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/search/by-price-range?minPrice=100000&maxPrice=500000",
+							"host": ["{{base_url}}"],
+							"path": ["products", "search", "by-price-range"],
+							"query": [
+								{
+									"key": "minPrice",
+									"value": "100000"
+								},
+								{
+									"key": "maxPrice",
+									"value": "500000"
+								}
+							]
+						},
+						"description": "Busca productos dentro de un rango de precios."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Sorted by Price ASC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/search/sorted-by-price-asc",
+							"host": ["{{base_url}}"],
+							"path": ["products", "search", "sorted-by-price-asc"]
+						},
+						"description": "Obtiene productos ordenados por precio ascendente."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Sorted by Price DESC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/search/sorted-by-price-desc",
+							"host": ["{{base_url}}"],
+							"path": ["products", "search", "sorted-by-price-desc"]
+						},
+						"description": "Obtiene productos ordenados por precio descendente."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/search/by-category?categoryId=1",
+							"host": ["{{base_url}}"],
+							"path": ["products", "search", "by-category"],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Obtiene productos por ID de categoría."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Created Between Dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/search/created-between?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
+							"host": ["{{base_url}}"],
+							"path": ["products", "search", "created-between"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31T23:59:59"
+								}
+							]
+						},
+						"description": "Obtiene productos creados entre dos fechas."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de productos con búsquedas avanzadas."
+		},
+		{
+			"name": "7. Stores",
+			"item": [
+				{
+					"name": "Get All Stores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stores",
+							"host": ["{{base_url}}"],
+							"path": ["stores"]
+						},
+						"description": "Obtiene todas las tiendas."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Store by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stores/{{store_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["stores", "{{store_id}}"]
+						},
+						"description": "Obtiene una tienda por su UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"storeName\": \"TechMart Pereira\",\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/stores",
+							"host": ["{{base_url}}"],
+							"path": ["stores"]
+						},
+						"description": "Crea una nueva tienda."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Store",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"storeName\": \"TechMart Pereira Centro\",\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/stores/{{store_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["stores", "{{store_id}}"]
+						},
+						"description": "Actualiza una tienda existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Store",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stores/{{store_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["stores", "{{store_id}}"]
+						},
+						"description": "Elimina una tienda."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stores by City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stores/search/by-city?cityId=1",
+							"host": ["{{base_url}}"],
+							"path": ["stores", "search", "by-city"],
+							"query": [
+								{
+									"key": "cityId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Obtiene tiendas por ID de ciudad."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de tiendas."
+		},
+		{
+			"name": "8. Store Products (Inventory)",
+			"item": [
+				{
+					"name": "Get All Store Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/store-products",
+							"host": ["{{base_url}}"],
+							"path": ["store-products"]
+						},
+						"description": "Obtiene todo el inventario de todas las tiendas."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Store Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/store-products/1",
+							"host": ["{{base_url}}"],
+							"path": ["store-products", "1"]
+						},
+						"description": "Obtiene un registro de inventario por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Store Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"stock\": 100,\n  \"address\": \"Pasillo A, Estante 10\",\n  \"store\": {\n    \"storeId\": \"{{store_id}}\",\n    \"storeName\": \"MegaStore Medellín Centro\"\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/store-products",
+							"host": ["{{base_url}}"],
+							"path": ["store-products"]
+						},
+						"description": "Agrega un producto al inventario de una tienda."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Store Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"stock\": 150,\n  \"address\": \"Pasillo B, Estante 5\",\n  \"store\": {\n    \"storeId\": \"{{store_id}}\",\n    \"storeName\": \"MegaStore Medellín Centro\"\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/store-products/1",
+							"host": ["{{base_url}}"],
+							"path": ["store-products", "1"]
+						},
+						"description": "Actualiza el inventario de un producto en una tienda."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Store Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/store-products/1",
+							"host": ["{{base_url}}"],
+							"path": ["store-products", "1"]
+						},
+						"description": "Elimina un producto del inventario."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Store",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/store-products/search/by-store?storeId={{store_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["store-products", "search", "by-store"],
+							"query": [
+								{
+									"key": "storeId",
+									"value": "{{store_id}}"
+								}
+							]
+						},
+						"description": "Obtiene todos los productos de una tienda específica."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stores by Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/store-products/search/by-product?productId={{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["store-products", "search", "by-product"],
+							"query": [
+								{
+									"key": "productId",
+									"value": "{{product_id}}"
+								}
+							]
+						},
+						"description": "Obtiene todas las tiendas que tienen un producto específico."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Low Stock Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/store-products/search/low-stock?threshold=50",
+							"host": ["{{base_url}}"],
+							"path": ["store-products", "search", "low-stock"],
+							"query": [
+								{
+									"key": "threshold",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Obtiene productos con stock bajo (menor al umbral especificado)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de inventario (productos en tiendas)."
+		},
+		{
+			"name": "9. Sales",
+			"item": [
+				{
+					"name": "Get All Sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sales",
+							"host": ["{{base_url}}"],
+							"path": ["sales"]
+						},
+						"description": "Obtiene todas las ventas del sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sale by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sales/{{sale_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["sales", "{{sale_id}}"]
+						},
+						"description": "Obtiene una venta por su UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sale",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"totalAmount\": 1500000,\n  \"user\": {\n    \"userId\": \"{{user_id}}\",\n    \"firstName\": \"Juan\",\n    \"lastName\": \"García\",\n    \"username\": \"juangarcia0\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sales",
+							"host": ["{{base_url}}"],
+							"path": ["sales"]
+						},
+						"description": "Crea una nueva venta."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sale",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"totalAmount\": 1800000,\n  \"user\": {\n    \"userId\": \"{{user_id}}\",\n    \"firstName\": \"Juan\",\n    \"lastName\": \"García\",\n    \"username\": \"juangarcia0\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sales/{{sale_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["sales", "{{sale_id}}"]
+						},
+						"description": "Actualiza una venta existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sale",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sales/{{sale_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["sales", "{{sale_id}}"]
+						},
+						"description": "Elimina una venta."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sales/search/by-user?userId={{user_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["sales", "search", "by-user"],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{user_id}}"
+								}
+							]
+						},
+						"description": "Obtiene todas las ventas de un usuario específico."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales Between Dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sales/search/by-date-range?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
+							"host": ["{{base_url}}"],
+							"path": ["sales", "search", "by-date-range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31T23:59:59"
+								}
+							]
+						},
+						"description": "Obtiene ventas realizadas entre dos fechas."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Total Sales Amount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sales/analytics/total-amount",
+							"host": ["{{base_url}}"],
+							"path": ["sales", "analytics", "total-amount"]
+						},
+						"description": "Calcula el monto total de todas las ventas."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de ventas."
+		},
+		{
+			"name": "10. Sale Products",
+			"item": [
+				{
+					"name": "Get All Sale Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sale-products",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products"]
+						},
+						"description": "Obtiene todos los productos vendidos."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sale Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sale-products/1",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products", "1"]
+						},
+						"description": "Obtiene un producto de venta por su ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sale Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"quantity\": 2,\n  \"sale\": {\n    \"saleId\": \"{{sale_id}}\",\n    \"totalAmount\": 1500000\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sale-products",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products"]
+						},
+						"description": "Agrega un producto a una venta."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sale Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"quantity\": 3,\n  \"sale\": {\n    \"saleId\": \"{{sale_id}}\",\n    \"totalAmount\": 1500000\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sale-products/1",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products", "1"]
+						},
+						"description": "Actualiza la cantidad de un producto en una venta."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sale Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sale-products/1",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products", "1"]
+						},
+						"description": "Elimina un producto de una venta."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Sale",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sale-products/search/by-sale?saleId={{sale_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products", "search", "by-sale"],
+							"query": [
+								{
+									"key": "saleId",
+									"value": "{{sale_id}}"
+								}
+							]
+						},
+						"description": "Obtiene todos los productos de una venta específica."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales by Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sale-products/search/by-product?productId={{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products", "search", "by-product"],
+							"query": [
+								{
+									"key": "productId",
+									"value": "{{product_id}}"
+								}
+							]
+						},
+						"description": "Obtiene todas las ventas que incluyen un producto específico."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top Selling Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/sale-products/analytics/top-selling?limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["sale-products", "analytics", "top-selling"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Obtiene los productos más vendidos (top N)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de productos en ventas (detalles de venta)."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "product_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "store_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "sale_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
+
