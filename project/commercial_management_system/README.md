@@ -505,7 +505,7 @@ Los controladores REST exponen los endpoints de la API y manejan las solicitudes
 @RestController
 @RequestMapping("/api/v1/{recurso}")
 @CrossOrigin(origins = "*")
-public class {RecursoController {
+public class RecursoController {
     
     private final {RecursoService service;
     
