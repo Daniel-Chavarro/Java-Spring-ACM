@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * Model class representing a sale-product relationship for data transfer operations.
  * This model is used for API communication and contains the same attributes as SaleProductEntity.
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SaleProductModel {
+public class SaleProductModel implements Serializable {
     /**
      * Unique identifier for the sale-product relationship.
      */

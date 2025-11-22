@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.acmapis.commercial_management_system.model.enums.UserRole;
 
+import java.io.Serializable;
+
 /**
  * Model class representing a user role for data transfer operations.
  * This model is used for API communication and contains the same attributes as UserRoleEntity.
@@ -16,7 +18,7 @@ import org.acmapis.commercial_management_system.model.enums.UserRole;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRoleModel {
+public class UserRoleModel implements Serializable {
     /**
      * Unique identifier for the user role.
      */

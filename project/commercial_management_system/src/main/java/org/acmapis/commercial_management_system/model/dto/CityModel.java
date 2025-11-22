@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * Model class representing a city for data transfer operations.
  * This model is used for API communication and contains the same attributes as CityEntity.
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityModel {
+public class CityModel implements Serializable {
     /**
      * Unique identifier for the city.
      */

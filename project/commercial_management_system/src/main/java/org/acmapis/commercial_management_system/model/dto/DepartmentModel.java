@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * Model class representing a department for data transfer operations.
  * This model is used for API communication and contains the same attributes as DepartmentEntity.
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepartmentModel {
+public class DepartmentModel implements Serializable {
     /**
      * Unique identifier for the department.
      */
