@@ -121,7 +121,7 @@ public class SaleController {
     }
 
     /**
-         * Find sales with total amount greater than the specified value.
+     * Find sales with total amount greater than the specified value.
      *
      * @param amount The minimum total amount
      * @return List of sales with total amount greater than the specified value

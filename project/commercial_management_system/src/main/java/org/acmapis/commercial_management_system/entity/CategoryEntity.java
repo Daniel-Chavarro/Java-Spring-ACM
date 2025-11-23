@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 /**
  * Entity representing a product category in the commercial management system.
  * This entity manages product categorization and maintains many-to-many relationships with products.
