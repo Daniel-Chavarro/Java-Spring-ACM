@@ -1256,19 +1256,11 @@ Las contribuciones son bienvenidas. Por favor:
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT.
+Este proyecto está bajo la Licencia GNU GPL.
 
 ---
 
-## Contacto
-
-Para preguntas o sugerencias, contactar al equipo de desarrollo en:
-📧 **Email:** dev@comercialmanagement.com
-🐦 **Twitter:** [@ACMAPIs](https://twitter.com/ACMAPIs)
-
----
-
-**Última actualización:** Noviembre 21, 2025
-**Versión:** 0.0.1-SNAPSHOT
+**Última actualización:** Noviembre 22, 2025
+**Versión:** 0.0.1-SNAPSHOT (y la última disponible)
 
 
