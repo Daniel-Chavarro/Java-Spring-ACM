@@ -35,12 +35,6 @@ public class CategoryService {
     private final CategoryMapper categoryMapper;
 
     /**
-     * Mapper interface for converting between ProductEntity and ProductModel objects.
-     * Used for mapping product data in category-product relationship operations.
-     */
-    private final ProductMapper productMapper;
-
-    /**
      * Constructs a new CategoryService with the required dependencies.
      * Uses constructor-based dependency injection for better testability and immutability.
      *
@@ -54,7 +48,6 @@ public class CategoryService {
                            ProductMapper productMapper) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
-        this.productMapper = productMapper;
     }
 
     /**

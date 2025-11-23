@@ -3,12 +3,14 @@ package org.acmapis.commercial_management_system.utils.mapper;
 import org.acmapis.commercial_management_system.entity.CategoryEntity;
 import org.acmapis.commercial_management_system.model.dto.CategoryModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
 /**
  * Mapper interface for Category-related data transformations.
+ * Note: The products list is ignored in toModel to avoid circular references with ProductMapper.
  *
  * @author Commercial Management System
  * @version 1.0
@@ -18,9 +20,10 @@ import java.util.List;
 public interface CategoryMapper {
     /**
      * Converts a CategoryEntity to a CategoryModel.
+     * The products list is ignored to prevent infinite recursion with ProductMapper.
      *
      * @param categoryEntity the CategoryEntity to convert
-     * @return the corresponding CategoryModel
+     * @return the corresponding CategoryModel (without products list)
      */
     CategoryModel toModel(CategoryEntity categoryEntity);
 

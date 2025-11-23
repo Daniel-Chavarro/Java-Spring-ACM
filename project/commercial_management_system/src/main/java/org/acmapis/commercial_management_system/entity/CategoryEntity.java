@@ -38,16 +38,4 @@ public class CategoryEntity {
      */
     @Column(name = "category_name", nullable = false, length = 64, unique = true)
     private String categoryName;
-
-    /**
-     * List of products associated with this category.
-     * Represents a many-to-many relationship managed through the product_category junction table.
-     */
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "product_category",
-            joinColumns = @JoinColumn(name = "category_id_fk"),
-            inverseJoinColumns = @JoinColumn(name = "product_id_fk")
-    )
-    private List<ProductEntity> products;
 }

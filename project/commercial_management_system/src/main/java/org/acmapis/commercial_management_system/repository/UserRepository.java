@@ -49,11 +49,10 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     List<UserEntity> findByCity_Department_DepartmentName(String cityDepartmentDepartmentName);
 
     /**
-     * Finds users by first name using pattern matching (case-insensitive).
-     * Supports SQL LIKE patterns with wildcards (%, _).
+     * Finds users by their first name using a case-insensitive partial match.
      *
      * @param firstName The first name pattern to search for (case-insensitive)
      * @return List of UserEntity objects with first names matching the specified pattern
      */
-    List<UserEntity> findByFirstNameLikeIgnoreCase(String firstName);
+    List<UserEntity> findByFirstNameContainingIgnoreCase(String firstName);
 }

@@ -28,9 +28,4 @@ public class CategoryModel implements Serializable {
      * Name of the category.
      */
     private String categoryName;
-
-    /**
-     * List of products associated with this category.
-     */
-    private List<ProductModel> products;
 }

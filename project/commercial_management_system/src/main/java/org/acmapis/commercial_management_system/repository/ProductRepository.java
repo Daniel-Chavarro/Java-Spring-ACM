@@ -53,21 +53,45 @@ public interface ProductRepository extends JpaRepository<ProductEntity, UUID> {
     List<ProductEntity> findByCreatedAtAfter(LocalDateTime createdAtAfter);
 
     /**
-     * Retrieves all products that belong to a specific category using JPQL.
-     * Uses the bidirectional relationship between CategoryEntity and ProductEntity.
+     * Retrieves all products that belong to a specific category.
+     * Uses native SQL query to join with the product_category intermediate table.
      *
      * @param categoryId The unique identifier of the category
      * @return List of ProductEntity objects associated with the specified category
      */
-    @Query("SELECT p FROM ProductEntity p JOIN p.categories c WHERE c.categoryId = :categoryId")
+    @Query(value = "SELECT p.* FROM product p " +
+            "INNER JOIN product_category pc ON p.product_id = pc.product_id_fk " +
+            "WHERE pc.category_id_fk = :categoryId", nativeQuery = true)
     List<ProductEntity> findByCategoryId(@Param("categoryId") Long categoryId);
 
     /**
      * Retrieves all products that belong to a category with the specified name.
+     * Uses native SQL query to join with the product_category and category tables.
      *
      * @param categoryName The name of the category
      * @return List of ProductEntity objects associated with the specified category name
      */
-    @Query("SELECT p FROM ProductEntity p JOIN p.categories c WHERE c.categoryName = :categoryName")
+    @Query(value = "SELECT p.* FROM product p " +
+            "INNER JOIN product_category pc ON p.product_id = pc.product_id_fk " +
+            "INNER JOIN category c ON pc.category_id_fk = c.category_id " +
+            "WHERE c.category_name = :categoryName", nativeQuery = true)
     List<ProductEntity> findByCategoryName(@Param("categoryName") String categoryName);
+
+    /**
+     * Retrieves all products available in a specific store by store ID.
+     *
+     * @param storeId The unique identifier of the store
+     * @return List of ProductEntity objects available in the specified store
+     */
+    @Query("SELECT sp.product FROM StoreProductEntity sp WHERE sp.store.storeId = :storeId")
+    List<ProductEntity> findByStoreId(@Param("storeId") UUID storeId);
+
+    /**
+     * Retrieves all products available in a specific store by store name.
+     *
+     * @param storeName The name of the store
+     * @return List of ProductEntity objects available in the store with the specified name
+     */
+    @Query("SELECT sp.product FROM StoreProductEntity sp WHERE sp.store.storeName = :storeName")
+    List<ProductEntity> findByStoreName(@Param("storeName") String storeName);
 }

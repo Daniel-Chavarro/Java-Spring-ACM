@@ -75,9 +75,15 @@ public class ProductEntity {
     /**
      * Many-to-many relationship with CategoryEntity.
      * A product can belong to multiple categories.
+     * Uses a join table 'product_category' to manage the relationship.
      * Cascade type is set to MERGE to propagate merge operations.
      * Fetch type is set to LAZY to optimize performance.
      */
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id_fk"),
+            inverseJoinColumns = @JoinColumn(name = "category_id_fk")
+    )
     private List<CategoryEntity> categories;
 }

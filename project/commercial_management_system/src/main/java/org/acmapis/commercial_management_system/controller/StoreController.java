@@ -1,6 +1,5 @@
 package org.acmapis.commercial_management_system.controller;
 
-import org.acmapis.commercial_management_system.model.dto.ProductModel;
 import org.acmapis.commercial_management_system.model.dto.StoreModel;
 import org.acmapis.commercial_management_system.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,29 +117,5 @@ public class StoreController {
     public ResponseEntity<List<StoreModel>> findByCityName(@RequestParam String cityName) {
         List<StoreModel> stores = storeService.getStoresByCityName(cityName);
         return ResponseEntity.ok(stores);
-    }
-
-    /**
-     * Get all products available in a specific store.
-     *
-     * @param id The store ID
-     * @return List of products available in the store
-     */
-    @GetMapping("/search/products/by-store-id/{id}")
-    public ResponseEntity<List<ProductModel>> getProductsByStoreId(@PathVariable UUID id) {
-        List<ProductModel> products = storeService.getProductsByStoreId(id);
-        return ResponseEntity.ok(products);
-    }
-
-    /**
-     * Get all products available in a specific store by store name.
-     *
-     * @param storeName The store name
-     * @return List of products available in the store
-     */
-    @GetMapping("/search/products/by-store-name/{storeName}")
-    public ResponseEntity<List<ProductModel>> getProductsByStoreName(@PathVariable String storeName) {
-        List<ProductModel> products = storeService.getProductsByStoreName(storeName);
-        return ResponseEntity.ok(products);
     }
 }

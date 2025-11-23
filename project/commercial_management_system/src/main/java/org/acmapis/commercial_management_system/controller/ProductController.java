@@ -2,7 +2,6 @@ package org.acmapis.commercial_management_system.controller;
 
 import org.acmapis.commercial_management_system.model.dto.ProductModel;
 import org.acmapis.commercial_management_system.service.ProductService;
-import org.acmapis.commercial_management_system.service.SaleProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -169,6 +168,30 @@ public class ProductController {
     @GetMapping("/analytics/top-best-sellers")
     public ResponseEntity<List<ProductModel>> getTopBestSellingProducts(@RequestParam int limit) {
         List<ProductModel> products = productService.getTopBestSellingProducts(limit);
+        return ResponseEntity.ok(products);
+    }
+
+    /**
+     * Get all products in a specific store by store ID.
+     *
+     * @param storeId The store ID
+     * @return List of products available in the store
+     */
+    @GetMapping("/search/by-store-id")
+    public ResponseEntity<List<ProductModel>> getProductsByStoreId(@RequestParam UUID storeId) {
+        List<ProductModel> products = productService.getProductsByStoreId(storeId);
+        return ResponseEntity.ok(products);
+    }
+
+    /**
+     * Get all products available in a specific store by store name.
+     *
+     * @param storeName The store name
+     * @return List of products available in the store
+     */
+    @GetMapping("/search/by-store-name")
+    public ResponseEntity<List<ProductModel>> getProductsByStoreName(@RequestParam String storeName) {
+        List<ProductModel> products = productService.getProductsByStoreName(storeName);
         return ResponseEntity.ok(products);
     }
 }

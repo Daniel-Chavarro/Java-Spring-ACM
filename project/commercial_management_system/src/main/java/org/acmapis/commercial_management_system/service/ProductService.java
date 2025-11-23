@@ -204,4 +204,26 @@ public class ProductService {
     public List<ProductModel> getTopBestSellingProducts(int limit) {
         return saleProductService.getTopBestSellingProducts(limit);
     }
+
+    /**
+     * Retrieves all products available in a specific store by store ID.
+     *
+     * @param storeId The unique identifier of the store
+     * @return List of ProductModel objects available in the specified store
+     */
+    public List<ProductModel> getProductsByStoreId(UUID storeId) {
+        List<ProductEntity> entities = productRepository.findByStoreId(storeId);
+        return productMapper.toModelList(entities);
+    }
+
+    /**
+     * Retrieves all products available in a specific store by store name.
+     *
+     * @param storeName The name of the store
+     * @return List of ProductModel objects available in the store with the specified name
+     */
+    public List<ProductModel> getProductsByStoreName(String storeName) {
+        List<ProductEntity> entities = productRepository.findByStoreName(storeName);
+        return productMapper.toModelList(entities);
+    }
 }

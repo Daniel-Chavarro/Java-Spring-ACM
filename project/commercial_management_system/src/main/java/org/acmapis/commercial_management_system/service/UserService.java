@@ -162,7 +162,7 @@ public class UserService {
      * @return List of UserModel objects with first names matching the specified pattern
      */
     public List<UserModel> getUsersByFirstNamePattern(String firstName) {
-        List<UserEntity> entities = userRepository.findByFirstNameLikeIgnoreCase(firstName);
+        List<UserEntity> entities = userRepository.findByFirstNameContainingIgnoreCase(firstName);
         return userMapper.toModelList(entities);
     }
 }

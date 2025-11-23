@@ -1,13 +1,10 @@
 package org.acmapis.commercial_management_system.service;
 
-import org.acmapis.commercial_management_system.entity.ProductEntity;
 import org.acmapis.commercial_management_system.entity.StoreEntity;
 import org.acmapis.commercial_management_system.entity.StoreProductEntity;
-import org.acmapis.commercial_management_system.model.dto.ProductModel;
 import org.acmapis.commercial_management_system.model.dto.StoreModel;
 import org.acmapis.commercial_management_system.model.dto.StoreProductModel;
 import org.acmapis.commercial_management_system.repository.StoreRepository;
-import org.acmapis.commercial_management_system.utils.mapper.ProductMapper;
 import org.acmapis.commercial_management_system.utils.mapper.StoreMapper;
 import org.acmapis.commercial_management_system.utils.mapper.StoreProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +38,6 @@ public class StoreService {
     private final StoreMapper storeMapper;
 
     /**
-     * Mapper interface for converting between ProductEntity and ProductModel objects.
-     * Used for mapping product data in inventory operations.
-     */
-    private final ProductMapper productMapper;
-
-    /**
      * Mapper interface for converting between StoreProductEntity and StoreProductModel objects.
      * Used for mapping store-product relationship data in inventory management.
      */
@@ -58,17 +49,14 @@ public class StoreService {
      *
      * @param storeRepository    the repository for store data access operations
      * @param storeMapper        the mapper for store entity-model conversions
-     * @param productMapper      the mapper for product entity-model conversions
      * @param storeProductMapper the mapper for store-product relationship conversions
      */
     @Autowired
     public StoreService(StoreRepository storeRepository,
                         StoreMapper storeMapper,
-                        ProductMapper productMapper,
                         StoreProductMapper storeProductMapper) {
         this.storeRepository = storeRepository;
         this.storeMapper = storeMapper;
-        this.productMapper = productMapper;
         this.storeProductMapper = storeProductMapper;
     }
 
@@ -157,27 +145,6 @@ public class StoreService {
         return storeMapper.toModelList(entities);
     }
 
-    /**
-     * Retrieves all products available in a specific store by store ID.
-     *
-     * @param storeId The unique identifier of the store
-     * @return List of ProductModel objects available in the specified store
-     */
-    public List<ProductModel> getProductsByStoreId(UUID storeId) {
-        List<ProductEntity> entities = storeRepository.findProductsByStoreId(storeId);
-        return productMapper.toModelList(entities);
-    }
-
-    /**
-     * Retrieves all products available in a specific store by store name.
-     *
-     * @param storeName The name of the store
-     * @return List of ProductModel objects available in the store with the specified name
-     */
-    public List<ProductModel> getProductsByStoreName(String storeName) {
-        List<ProductEntity> entities = storeRepository.findProductByStoreName(storeName);
-        return productMapper.toModelList(entities);
-    }
 
     /**
      * Retrieves all store-product relationships for a specific store.
