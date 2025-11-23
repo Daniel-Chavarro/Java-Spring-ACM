@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "commercial-mgmt-api-2025",
+		"_postman_id": "c7486f44-d98b-407b-aef3-9577095dd100",
 		"name": "Commercial Management System API",
-		"description": "Colección completa de endpoints para el Sistema de Gestión Comercial.\n\n**Base URL:** http://localhost:8080/api/v1\n\n**Autor:** Commercial Management System Team\n**Versión:** 1.0\n**Fecha:** 2025-11-22\n\n## Características:\n- ✅ CRUD completo para todas las entidades\n- ✅ Endpoints de búsqueda y consultas especializadas\n- ✅ Ejemplos de peticiones con datos reales\n- ✅ Variables de entorno configurables\n- ✅ Organizado por controladores\n\n## Variables necesarias:\n- `base_url`: http://localhost:8080/api/v1\n- `department_id`: ID de departamento de ejemplo\n- `city_id`: ID de ciudad de ejemplo\n- `user_id`: UUID de usuario de ejemplo\n- `product_id`: UUID de producto de ejemplo\n- `store_id`: UUID de tienda de ejemplo\n- `sale_id`: UUID de venta de ejemplo",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"description": "Colección completa de endpoints para el Sistema de Gestión Comercial.\n\n**Base URL:** [http://localhost:8080/api/v1](http://localhost:8080/api/v1)\n\n**Autor:** Commercial Management System Team  \n**Versión:** 1.0  \n**Fecha:** 2025-11-22\n\n## Características:\n\n- ✅ CRUD completo para todas las entidades\n    \n- ✅ Endpoints de búsqueda y consultas especializadas\n    \n- ✅ Ejemplos de peticiones con datos reales\n    \n- ✅ Variables de entorno configurables\n    \n- ✅ Organizado por controladores\n    \n\n## Variables necesarias:\n\n- `base_url`: [http://localhost:8080/api/v1](http://localhost:8080/api/v1)\n    \n- `department_id`: ID de departamento de ejemplo\n    \n- `city_id`: ID de ciudad de ejemplo\n    \n- `user_id`: UUID de usuario de ejemplo\n    \n- `product_id`: UUID de producto de ejemplo\n    \n- `store_id`: UUID de tienda de ejemplo\n    \n- `sale_id`: UUID de venta de ejemplo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43018170"
 	},
 	"item": [
 		{
@@ -14,11 +15,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/departments",
-							"host": ["{{base_url}}"],
-							"path": ["departments"]
-						},
+						"url": "{{base_url}}/departments",
 						"description": "Obtiene todos los departamentos del sistema."
 					},
 					"response": []
@@ -28,11 +25,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/departments/1",
-							"host": ["{{base_url}}"],
-							"path": ["departments", "1"]
-						},
+						"url": "{{base_url}}/departments/1",
 						"description": "Obtiene un departamento específico por su ID."
 					},
 					"response": []
@@ -51,11 +44,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"departmentName\": \"Risaralda\"\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/departments",
-							"host": ["{{base_url}}"],
-							"path": ["departments"]
-						},
+						"url": "{{base_url}}/departments",
 						"description": "Crea un nuevo departamento."
 					},
 					"response": []
@@ -74,11 +63,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"departmentName\": \"Risaralda Actualizado\"\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/departments/1",
-							"host": ["{{base_url}}"],
-							"path": ["departments", "1"]
-						},
+						"url": "{{base_url}}/departments/9",
 						"description": "Actualiza un departamento existente."
 					},
 					"response": []
@@ -88,11 +73,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/departments/1",
-							"host": ["{{base_url}}"],
-							"path": ["departments", "1"]
-						},
+						"url": "{{base_url}}/departments/9",
 						"description": "Elimina un departamento por su ID."
 					},
 					"response": []
@@ -108,11 +89,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/cities",
-							"host": ["{{base_url}}"],
-							"path": ["cities"]
-						},
+						"url": "{{base_url}}/cities",
 						"description": "Obtiene todas las ciudades del sistema."
 					},
 					"response": []
@@ -122,11 +99,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/cities/1",
-							"host": ["{{base_url}}"],
-							"path": ["cities", "1"]
-						},
+						"url": "{{base_url}}/cities/1",
 						"description": "Obtiene una ciudad específica por su ID."
 					},
 					"response": []
@@ -145,11 +118,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"cityName\": \"Pereira\",\n  \"department\": {\n    \"departmentId\": 1,\n    \"departmentName\": \"Antioquia\"\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/cities",
-							"host": ["{{base_url}}"],
-							"path": ["cities"]
-						},
+						"url": "{{base_url}}/cities",
 						"description": "Crea una nueva ciudad."
 					},
 					"response": []
@@ -168,11 +137,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"cityName\": \"Pereira Actualizado\",\n  \"department\": {\n    \"departmentId\": 1,\n    \"departmentName\": \"Antioquia\"\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/cities/1",
-							"host": ["{{base_url}}"],
-							"path": ["cities", "1"]
-						},
+						"url": "{{base_url}}/cities/16",
 						"description": "Actualiza una ciudad existente."
 					},
 					"response": []
@@ -182,32 +147,8 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/cities/1",
-							"host": ["{{base_url}}"],
-							"path": ["cities", "1"]
-						},
+						"url": "{{base_url}}/cities/16",
 						"description": "Elimina una ciudad por su ID."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Cities by Department",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/cities/search/by-department?departmentId=1",
-							"host": ["{{base_url}}"],
-							"path": ["cities", "search", "by-department"],
-							"query": [
-								{
-									"key": "departmentId",
-									"value": "1"
-								}
-							]
-						},
-						"description": "Busca ciudades por ID de departamento."
 					},
 					"response": []
 				}
@@ -222,11 +163,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/user-roles",
-							"host": ["{{base_url}}"],
-							"path": ["user-roles"]
-						},
+						"url": "{{base_url}}/user-roles",
 						"description": "Obtiene todos los roles de usuario."
 					},
 					"response": []
@@ -236,11 +173,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/user-roles/1",
-							"host": ["{{base_url}}"],
-							"path": ["user-roles", "1"]
-						},
+						"url": "{{base_url}}/user-roles/1",
 						"description": "Obtiene un rol de usuario por su ID."
 					},
 					"response": []
@@ -259,11 +192,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"role\": \"ADMIN\"\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/user-roles",
-							"host": ["{{base_url}}"],
-							"path": ["user-roles"]
-						},
+						"url": "{{base_url}}/user-roles",
 						"description": "Crea un nuevo rol de usuario. Valores: ADMIN, USER, MANAGER"
 					},
 					"response": []
@@ -282,11 +211,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"role\": \"MANAGER\"\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/user-roles/1",
-							"host": ["{{base_url}}"],
-							"path": ["user-roles", "1"]
-						},
+						"url": "{{base_url}}/user-roles/4",
 						"description": "Actualiza un rol de usuario."
 					},
 					"response": []
@@ -296,11 +221,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/user-roles/1",
-							"host": ["{{base_url}}"],
-							"path": ["user-roles", "1"]
-						},
+						"url": "{{base_url}}/user-roles/4",
 						"description": "Elimina un rol de usuario."
 					},
 					"response": []
@@ -316,11 +237,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/users",
-							"host": ["{{base_url}}"],
-							"path": ["users"]
-						},
+						"url": "{{base_url}}/users",
 						"description": "Obtiene todos los usuarios del sistema."
 					},
 					"response": []
@@ -330,11 +247,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/users/{{user_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["users", "{{user_id}}"]
-						},
+						"url": "{{base_url}}/users/9c53d434-acb0-4647-ad61-77bc92381c6e",
 						"description": "Obtiene un usuario por su UUID."
 					},
 					"response": []
@@ -353,11 +266,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Usuario\",\n  \"username\": \"testusuario\",\n  \"email\": \"test@example.com\",\n  \"password\": \"$2a$10$encrypted.password.hash\",\n  \"phone\": \"3001234567\",\n  \"role\": {\n    \"userRoleId\": 2,\n    \"role\": \"USER\"\n  },\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/users",
-							"host": ["{{base_url}}"],
-							"path": ["users"]
-						},
+						"url": "{{base_url}}/users",
 						"description": "Crea un nuevo usuario."
 					},
 					"response": []
@@ -376,11 +285,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Test Actualizado\",\n  \"lastName\": \"Usuario\",\n  \"username\": \"testusuario\",\n  \"email\": \"test@example.com\",\n  \"password\": \"$2a$10$encrypted.password.hash\",\n  \"phone\": \"3009876543\",\n  \"role\": {\n    \"userRoleId\": 2,\n    \"role\": \"USER\"\n  },\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/users/{{user_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["users", "{{user_id}}"]
-						},
+						"url": "{{base_url}}/users/{{user_id}}",
 						"description": "Actualiza un usuario existente."
 					},
 					"response": []
@@ -390,11 +295,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/users/{{user_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["users", "{{user_id}}"]
-						},
+						"url": "{{base_url}}/users/{{user_id}}",
 						"description": "Elimina un usuario por su UUID."
 					},
 					"response": []
@@ -406,8 +307,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/users/search/by-lastname?lastName=García",
-							"host": ["{{base_url}}"],
-							"path": ["users", "search", "by-lastname"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"search",
+								"by-lastname"
+							],
 							"query": [
 								{
 									"key": "lastName",
@@ -426,8 +333,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/users/search/by-city?cityId=1",
-							"host": ["{{base_url}}"],
-							"path": ["users", "search", "by-city"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"search",
+								"by-city"
+							],
 							"query": [
 								{
 									"key": "cityId",
@@ -436,6 +349,14 @@
 							]
 						},
 						"description": "Obtiene usuarios por ID de ciudad."
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -450,11 +371,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/categories",
-							"host": ["{{base_url}}"],
-							"path": ["categories"]
-						},
+						"url": "{{base_url}}/categories",
 						"description": "Obtiene todas las categorías de productos."
 					},
 					"response": []
@@ -464,11 +381,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/categories/1",
-							"host": ["{{base_url}}"],
-							"path": ["categories", "1"]
-						},
+						"url": "{{base_url}}/categories/1",
 						"description": "Obtiene una categoría por su ID."
 					},
 					"response": []
@@ -487,11 +400,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"categoryName\": \"Mascotas\"\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/categories",
-							"host": ["{{base_url}}"],
-							"path": ["categories"]
-						},
+						"url": "{{base_url}}/categories",
 						"description": "Crea una nueva categoría."
 					},
 					"response": []
@@ -510,11 +419,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"categoryName\": \"Mascotas y Accesorios\"\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/categories/1",
-							"host": ["{{base_url}}"],
-							"path": ["categories", "1"]
-						},
+						"url": "{{base_url}}/categories/11",
 						"description": "Actualiza una categoría existente."
 					},
 					"response": []
@@ -524,11 +429,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/categories/1",
-							"host": ["{{base_url}}"],
-							"path": ["categories", "1"]
-						},
+						"url": "{{base_url}}/categories/11",
 						"description": "Elimina una categoría."
 					},
 					"response": []
@@ -544,11 +445,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/products",
-							"host": ["{{base_url}}"],
-							"path": ["products"]
-						},
+						"url": "{{base_url}}/products",
 						"description": "Obtiene todos los productos del sistema."
 					},
 					"response": []
@@ -558,11 +455,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/products/{{product_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["products", "{{product_id}}"]
-						},
+						"url": "{{base_url}}/products/ac601468-71d7-43db-a249-3257c88a96f1",
 						"description": "Obtiene un producto por su UUID."
 					},
 					"response": []
@@ -581,11 +474,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"productName\": \"iPhone 15 Pro\",\n  \"productDescription\": \"Smartphone Apple con chip A17 Pro\",\n  \"price\": 4999000.0,\n  \"categories\": [\n    {\n      \"categoryId\": 1,\n      \"categoryName\": \"Electrónica\"\n    },\n    {\n      \"categoryId\": 10,\n      \"categoryName\": \"Tecnología\"\n    }\n  ]\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/products",
-							"host": ["{{base_url}}"],
-							"path": ["products"]
-						},
+						"url": "{{base_url}}/products",
 						"description": "Crea un nuevo producto."
 					},
 					"response": []
@@ -604,11 +493,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"productName\": \"iPhone 15 Pro Max\",\n  \"productDescription\": \"Smartphone Apple con chip A17 Pro y pantalla de 6.7 pulgadas\",\n  \"price\": 5499000.0,\n  \"categories\": [\n    {\n      \"categoryId\": 1,\n      \"categoryName\": \"Electrónica\"\n    }\n  ]\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/products/{{product_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["products", "{{product_id}}"]
-						},
+						"url": "{{base_url}}/products/{{product_id}}",
 						"description": "Actualiza un producto existente."
 					},
 					"response": []
@@ -618,11 +503,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/products/{{product_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["products", "{{product_id}}"]
-						},
+						"url": "{{base_url}}/products/{{product_id}}",
 						"description": "Elimina un producto."
 					},
 					"response": []
@@ -634,8 +515,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/products/search/by-price-range?minPrice=100000&maxPrice=500000",
-							"host": ["{{base_url}}"],
-							"path": ["products", "search", "by-price-range"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"search",
+								"by-price-range"
+							],
 							"query": [
 								{
 									"key": "minPrice",
@@ -656,11 +543,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/products/search/sorted-by-price-asc",
-							"host": ["{{base_url}}"],
-							"path": ["products", "search", "sorted-by-price-asc"]
-						},
+						"url": "{{base_url}}/products/search/sorted-by-price-asc",
 						"description": "Obtiene productos ordenados por precio ascendente."
 					},
 					"response": []
@@ -670,11 +553,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/products/search/sorted-by-price-desc",
-							"host": ["{{base_url}}"],
-							"path": ["products", "search", "sorted-by-price-desc"]
-						},
+						"url": "{{base_url}}/products/search/sorted-by-price-desc",
 						"description": "Obtiene productos ordenados por precio descendente."
 					},
 					"response": []
@@ -686,8 +565,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/products/search/by-category?categoryId=1",
-							"host": ["{{base_url}}"],
-							"path": ["products", "search", "by-category"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"search",
+								"by-category"
+							],
 							"query": [
 								{
 									"key": "categoryId",
@@ -700,26 +585,78 @@
 					"response": []
 				},
 				{
-					"name": "Get Products Created Between Dates",
+					"name": "Get Products Created After Date",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/products/search/created-between?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
-							"host": ["{{base_url}}"],
-							"path": ["products", "search", "created-between"],
+							"raw": "{{base_url}}/products/search/recent?date=2025-01-01T00:00:00",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"search",
+								"recent"
+							],
 							"query": [
 								{
-									"key": "startDate",
+									"key": "date",
 									"value": "2025-01-01T00:00:00"
-								},
-								{
-									"key": "endDate",
-									"value": "2025-12-31T23:59:59"
 								}
 							]
 						},
 						"description": "Obtiene productos creados entre dos fechas."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products ordered by total sales quantity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/products/analytics/best-sellers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get top N best-selling products.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/analytics/top-best-sellers?limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"analytics",
+								"top-best-sellers"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products in a specific store ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products in a specific store name",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -734,11 +671,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/stores",
-							"host": ["{{base_url}}"],
-							"path": ["stores"]
-						},
+						"url": "{{base_url}}/stores",
 						"description": "Obtiene todas las tiendas."
 					},
 					"response": []
@@ -748,11 +681,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/stores/{{store_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["stores", "{{store_id}}"]
-						},
+						"url": "{{base_url}}/stores/8fd3aa4e-13a1-40a9-a2eb-8d54a46fdb38",
 						"description": "Obtiene una tienda por su UUID."
 					},
 					"response": []
@@ -771,11 +700,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"storeName\": \"TechMart Pereira\",\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/stores",
-							"host": ["{{base_url}}"],
-							"path": ["stores"]
-						},
+						"url": "{{base_url}}/stores",
 						"description": "Crea una nueva tienda."
 					},
 					"response": []
@@ -794,11 +719,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"storeName\": \"TechMart Pereira Centro\",\n  \"city\": {\n    \"cityId\": 1,\n    \"cityName\": \"Medellín\",\n    \"department\": {\n      \"departmentId\": 1,\n      \"departmentName\": \"Antioquia\"\n    }\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/stores/{{store_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["stores", "{{store_id}}"]
-						},
+						"url": "{{base_url}}/stores/{{store_id}}",
 						"description": "Actualiza una tienda existente."
 					},
 					"response": []
@@ -808,11 +729,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/stores/{{store_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["stores", "{{store_id}}"]
-						},
+						"url": "{{base_url}}/stores/{{store_id}}",
 						"description": "Elimina una tienda."
 					},
 					"response": []
@@ -824,8 +741,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/stores/search/by-city?cityId=1",
-							"host": ["{{base_url}}"],
-							"path": ["stores", "search", "by-city"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stores",
+								"search",
+								"by-city"
+							],
 							"query": [
 								{
 									"key": "cityId",
@@ -834,6 +757,14 @@
 							]
 						},
 						"description": "Obtiene tiendas por ID de ciudad."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stores by City Name",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -848,11 +779,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/store-products",
-							"host": ["{{base_url}}"],
-							"path": ["store-products"]
-						},
+						"url": "{{base_url}}/store-products",
 						"description": "Obtiene todo el inventario de todas las tiendas."
 					},
 					"response": []
@@ -862,11 +789,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/store-products/1",
-							"host": ["{{base_url}}"],
-							"path": ["store-products", "1"]
-						},
+						"url": "{{base_url}}/store-products/1",
 						"description": "Obtiene un registro de inventario por su ID."
 					},
 					"response": []
@@ -885,11 +808,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"stock\": 100,\n  \"address\": \"Pasillo A, Estante 10\",\n  \"store\": {\n    \"storeId\": \"{{store_id}}\",\n    \"storeName\": \"MegaStore Medellín Centro\"\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/store-products",
-							"host": ["{{base_url}}"],
-							"path": ["store-products"]
-						},
+						"url": "{{base_url}}/store-products",
 						"description": "Agrega un producto al inventario de una tienda."
 					},
 					"response": []
@@ -908,11 +827,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"stock\": 150,\n  \"address\": \"Pasillo B, Estante 5\",\n  \"store\": {\n    \"storeId\": \"{{store_id}}\",\n    \"storeName\": \"MegaStore Medellín Centro\"\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/store-products/1",
-							"host": ["{{base_url}}"],
-							"path": ["store-products", "1"]
-						},
+						"url": "{{base_url}}/store-products/1",
 						"description": "Actualiza el inventario de un producto en una tienda."
 					},
 					"response": []
@@ -922,72 +837,8 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/store-products/1",
-							"host": ["{{base_url}}"],
-							"path": ["store-products", "1"]
-						},
+						"url": "{{base_url}}/store-products/1",
 						"description": "Elimina un producto del inventario."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Products by Store",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/store-products/search/by-store?storeId={{store_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["store-products", "search", "by-store"],
-							"query": [
-								{
-									"key": "storeId",
-									"value": "{{store_id}}"
-								}
-							]
-						},
-						"description": "Obtiene todos los productos de una tienda específica."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Stores by Product",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/store-products/search/by-product?productId={{product_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["store-products", "search", "by-product"],
-							"query": [
-								{
-									"key": "productId",
-									"value": "{{product_id}}"
-								}
-							]
-						},
-						"description": "Obtiene todas las tiendas que tienen un producto específico."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Low Stock Products",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/store-products/search/low-stock?threshold=50",
-							"host": ["{{base_url}}"],
-							"path": ["store-products", "search", "low-stock"],
-							"query": [
-								{
-									"key": "threshold",
-									"value": "50"
-								}
-							]
-						},
-						"description": "Obtiene productos con stock bajo (menor al umbral especificado)."
 					},
 					"response": []
 				}
@@ -1002,11 +853,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sales",
-							"host": ["{{base_url}}"],
-							"path": ["sales"]
-						},
+						"url": "{{base_url}}/sales",
 						"description": "Obtiene todas las ventas del sistema."
 					},
 					"response": []
@@ -1016,11 +863,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sales/{{sale_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["sales", "{{sale_id}}"]
-						},
+						"url": "{{base_url}}/sales/{{sale_id}}",
 						"description": "Obtiene una venta por su UUID."
 					},
 					"response": []
@@ -1039,11 +882,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"totalAmount\": 1500000,\n  \"user\": {\n    \"userId\": \"{{user_id}}\",\n    \"firstName\": \"Juan\",\n    \"lastName\": \"García\",\n    \"username\": \"juangarcia0\"\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/sales",
-							"host": ["{{base_url}}"],
-							"path": ["sales"]
-						},
+						"url": "{{base_url}}/sales",
 						"description": "Crea una nueva venta."
 					},
 					"response": []
@@ -1062,11 +901,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"totalAmount\": 1800000,\n  \"user\": {\n    \"userId\": \"{{user_id}}\",\n    \"firstName\": \"Juan\",\n    \"lastName\": \"García\",\n    \"username\": \"juangarcia0\"\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/sales/{{sale_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["sales", "{{sale_id}}"]
-						},
+						"url": "{{base_url}}/sales/{{sale_id}}",
 						"description": "Actualiza una venta existente."
 					},
 					"response": []
@@ -1076,11 +911,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sales/{{sale_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["sales", "{{sale_id}}"]
-						},
+						"url": "{{base_url}}/sales/{{sale_id}}",
 						"description": "Elimina una venta."
 					},
 					"response": []
@@ -1092,8 +923,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/sales/search/by-user?userId={{user_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["sales", "search", "by-user"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sales",
+								"search",
+								"by-user"
+							],
 							"query": [
 								{
 									"key": "userId",
@@ -1106,40 +943,28 @@
 					"response": []
 				},
 				{
-					"name": "Get Sales Between Dates",
+					"name": "Get Total Sales Amount for a specific date",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sales/search/by-date-range?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
-							"host": ["{{base_url}}"],
-							"path": ["sales", "search", "by-date-range"],
-							"query": [
-								{
-									"key": "startDate",
-									"value": "2025-01-01T00:00:00"
-								},
-								{
-									"key": "endDate",
-									"value": "2025-12-31T23:59:59"
-								}
-							]
-						},
-						"description": "Obtiene ventas realizadas entre dos fechas."
+						"url": "{{base_url}}/sales/analytics/total-amount",
+						"description": "Calcula el monto total de todas las ventas."
 					},
 					"response": []
 				},
 				{
-					"name": "Get Total Sales Amount",
+					"name": "Get Sales by User First Name",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sales/analytics/total-amount",
-							"host": ["{{base_url}}"],
-							"path": ["sales", "analytics", "total-amount"]
-						},
-						"description": "Calcula el monto total de todas las ventas."
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales Greater Than Amount",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -1154,11 +979,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sale-products",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products"]
-						},
+						"url": "{{base_url}}/sale-products",
 						"description": "Obtiene todos los productos vendidos."
 					},
 					"response": []
@@ -1168,11 +989,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sale-products/1",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products", "1"]
-						},
+						"url": "{{base_url}}/sale-products/1",
 						"description": "Obtiene un producto de venta por su ID."
 					},
 					"response": []
@@ -1191,11 +1008,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"quantity\": 2,\n  \"sale\": {\n    \"saleId\": \"{{sale_id}}\",\n    \"totalAmount\": 1500000\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/sale-products",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products"]
-						},
+						"url": "{{base_url}}/sale-products",
 						"description": "Agrega un producto a una venta."
 					},
 					"response": []
@@ -1214,11 +1027,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"quantity\": 3,\n  \"sale\": {\n    \"saleId\": \"{{sale_id}}\",\n    \"totalAmount\": 1500000\n  },\n  \"product\": {\n    \"productId\": \"{{product_id}}\",\n    \"productName\": \"Laptop HP Pavilion 15\",\n    \"price\": 1299000.0\n  }\n}"
 						},
-						"url": {
-							"raw": "{{base_url}}/sale-products/1",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products", "1"]
-						},
+						"url": "{{base_url}}/sale-products/1",
 						"description": "Actualiza la cantidad de un producto en una venta."
 					},
 					"response": []
@@ -1228,72 +1037,8 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sale-products/1",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products", "1"]
-						},
+						"url": "{{base_url}}/sale-products/1",
 						"description": "Elimina un producto de una venta."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Products by Sale",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sale-products/search/by-sale?saleId={{sale_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products", "search", "by-sale"],
-							"query": [
-								{
-									"key": "saleId",
-									"value": "{{sale_id}}"
-								}
-							]
-						},
-						"description": "Obtiene todos los productos de una venta específica."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Sales by Product",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sale-products/search/by-product?productId={{product_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products", "search", "by-product"],
-							"query": [
-								{
-									"key": "productId",
-									"value": "{{product_id}}"
-								}
-							]
-						},
-						"description": "Obtiene todas las ventas que incluyen un producto específico."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Top Selling Products",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/sale-products/analytics/top-selling?limit=10",
-							"host": ["{{base_url}}"],
-							"path": ["sale-products", "analytics", "top-selling"],
-							"query": [
-								{
-									"key": "limit",
-									"value": "10"
-								}
-							]
-						},
-						"description": "Obtiene los productos más vendidos (top N)."
 					},
 					"response": []
 				}
@@ -1349,4 +1094,3 @@
 		}
 	]
 }
-
